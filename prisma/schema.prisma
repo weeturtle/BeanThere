@@ -14,10 +14,9 @@ datasource db {
 }
 
 model Users {
-  id         String @id @default(cuid())
-  email      String @unique
-  first_name String
-  last_name  String
+  id    String @id @default(cuid())
+  email String @unique
+  name  String
 
   Friends             Friends[]             @relation(name: "user_friends")
   FriendUserFriends   Friends[]             @relation(name: "friend_user_friends")
