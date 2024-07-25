@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc"
+  },
   "devDependencies": {
     "@prisma/client": "^5.17.0",
     "@types/node": "^20.14.12",

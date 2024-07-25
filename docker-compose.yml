@@ -12,5 +12,16 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  api:
+    build: .
+    ports:
+      - "4000:4000"
+    depends_on:
+      - postgres_db
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+
 volumes:
   postgres_data:
