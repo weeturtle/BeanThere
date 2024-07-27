@@ -5,6 +5,7 @@ import SECRET from "./secret";
 import verifyHandler from "./handlers/verifyHandler";
 import logoutHandler from "./handlers/logoutHandler";
 import signupHandler from "./handlers/signupHandler";
+import deleteHandler from "./handlers/deleteHandler";
 
 if (!SECRET) {
   console.error("SECRET is not defined");
@@ -21,6 +22,7 @@ app.post("/login", loginHandler);
 app.get("/verify", verifyHandler);
 app.get("/logout", logoutHandler);
 app.post("/signup", signupHandler);
+app.delete("/delete/:id", deleteHandler);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

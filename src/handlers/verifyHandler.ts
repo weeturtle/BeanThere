@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import SECRET from "../secret";
 import prisma from "../database";
 import tokenFromHeader from "../utils/tokenFromHeader";
+import verifyToken from "../utils/verifyToken";
 
 const verifyHandler = async (req: Request, res: Response) => {
   const token = tokenFromHeader(req);
@@ -30,16 +31,7 @@ const verifyHandler = async (req: Request, res: Response) => {
 
   return res
     .status(200)
-    .json({ message: "Valid token", userId: session_details.userId });
-};
-
-const verifyToken = async (token: string) => {
-  try {
-    const session = jwt.verify(token, SECRET);
-    return session;
-  } catch (err) {
-    return false;
-  }
+    .json({ message: "Valid token", user_id: session_details.userId });
 };
 
 export default verifyHandler;

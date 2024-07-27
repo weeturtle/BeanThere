@@ -36,7 +36,9 @@ const signupHandler = async (req: Request, res: Response) => {
 
   const token = await issueNewToken(response.id);
 
-  return res.status(200).json({ message: "Signup successful", token });
+  return res
+    .status(200)
+    .json({ message: "Signup successful", token, userId: response.id });
 };
 
 export default signupHandler;
