@@ -1,27 +1,20 @@
 services:
-  postgres_db:
+  auth-db:
     image: postgres:16
-
     ports:
-      - "5432:5432"
+      - "5433:5432"
     user: postgres
     environment:
       - POSTGRES_PASSWORD=postgres
-
     restart: always
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
 
-  api:
+  auth-api:
     build: .
     ports:
-      - "4000:4000"
+      - "4001:4001"
     depends_on:
-      - postgres_db
+      - auth-db
     env_file:
       - .env
     stdin_open: true
     tty: true
-
-volumes:
-  postgres_data:
