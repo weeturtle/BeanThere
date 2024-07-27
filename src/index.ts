@@ -1,4 +1,5 @@
 import Express from "express";
+import cors from "cors";
 import bodyParser from "body-parser";
 import userRouter from "./routers/userRouter";
 import cafeRouter from "./routers/cafeRouter";
@@ -19,6 +20,8 @@ if (!PORT) {
 }
 
 app.use(bodyParser.json());
+app.use(cors());
+
 app.use("/user", userRouter);
 app.use("/cafe", cafeRouter);
 app.use("/review", reviewRouter);
