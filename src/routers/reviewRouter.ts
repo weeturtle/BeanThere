@@ -5,7 +5,6 @@ import authenticate from "../util/authenticate";
 interface IReviewParams {
   rating: number;
   review: string;
-  user_id: string;
   cafe_id: string;
   drink: string;
   tagged_users?: string[];
@@ -16,6 +15,7 @@ const reviewRouter = Router();
 
 reviewRouter.use(authenticate);
 reviewRouter.post("/", async (req, res) => {
+  const user_id = req.headers["user_id"] as string;
   const review_info = req.body as IReviewParams;
 
   const response = await prisma.reviews.create({
@@ -30,7 +30,7 @@ reviewRouter.post("/", async (req, res) => {
       },
       User: {
         connect: {
-          id: review_info.user_id,
+          id: user_id,
         },
       },
     },
