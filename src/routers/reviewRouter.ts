@@ -1,5 +1,6 @@
 import { Router } from "express";
 import prisma from "../database";
+import authenticate from "../util/authenticate";
 
 interface IReviewParams {
   rating: number;
@@ -13,6 +14,7 @@ interface IReviewParams {
 
 const reviewRouter = Router();
 
+reviewRouter.use(authenticate);
 reviewRouter.post("/", async (req, res) => {
   const review_info = req.body as IReviewParams;
 
