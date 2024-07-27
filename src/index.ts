@@ -1,7 +1,8 @@
 import bodyParser from "body-parser";
 import Express from "express";
-import loginHandler from "./handlers/loginHandler";
+import cors from "cors";
 import SECRET from "./secret";
+import loginHandler from "./handlers/loginHandler";
 import verifyHandler from "./handlers/verifyHandler";
 import logoutHandler from "./handlers/logoutHandler";
 import signupHandler from "./handlers/signupHandler";
@@ -11,12 +12,12 @@ if (!SECRET) {
   console.error("SECRET is not defined");
   process.exit(1);
 }
+const PORT = process.env["PORT"] || 4001;
 
 const app = Express();
 
-const PORT = process.env["PORT"] || 4001;
-
 app.use(bodyParser.json());
+app.use(cors());
 
 app.post("/login", loginHandler);
 app.get("/verify", verifyHandler);
