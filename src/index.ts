@@ -5,6 +5,7 @@ import userRouter from "./routers/userRouter";
 import cafeRouter from "./routers/cafeRouter";
 import reviewRouter from "./routers/reviewRouter";
 import friendRouter from "./routers/friendRouter";
+import authRouter from "./routers/authRouter";
 import { PORT, AUTH_URL } from "./util/envs";
 
 const app = Express();
@@ -26,6 +27,7 @@ app.use("/user", userRouter);
 app.use("/cafe", cafeRouter);
 app.use("/review", reviewRouter);
 app.use("/friend", friendRouter);
+app.use("/auth", authRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
