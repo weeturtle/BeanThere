@@ -21,7 +21,7 @@ app.use(cors());
 
 app.post("/login", loginHandler);
 app.get("/verify", verifyHandler);
-app.get("/logout", logoutHandler);
+app.post("/logout", logoutHandler);
 app.post("/signup", signupHandler);
 app.delete("/delete/:id", deleteHandler);
 
