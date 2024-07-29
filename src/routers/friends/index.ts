@@ -1,5 +1,5 @@
 import { Router } from "express";
-import prisma from "../database";
+import prisma from "../../database";
 
 const friendRouter = Router();
 
@@ -31,26 +31,27 @@ friendRouter.post("/", async (req, res) => {
     return res.status(400).json({ message: "Friend not found" });
   }
 
-  const response = await prisma.friends.create({
-    data: {
-      User: {
-        connect: {
-          id: user_id,
+  try {
+    const response = await prisma.friends.create({
+      data: {
+        User: {
+          connect: {
+            id: user_id,
+          },
+        },
+        Friend_User: {
+          connect: {
+            id: friend_id,
+          },
         },
       },
-      Friend_User: {
-        connect: {
-          id: friend_id,
-        },
-      },
-    },
-  });
-
-  return res.json(response).status(200);
+    });
+    return res.json(response).status(200);
+  } catch (err) {
+    return res.json({ message: err }).status(500);
+  }
 });
 
-// How would a request to this look? Answer below:
-// GET
 friendRouter.get("/:user_id", async (req, res) => {
   const { user_id } = req.params;
 
@@ -59,7 +60,11 @@ friendRouter.get("/:user_id", async (req, res) => {
       id: user_id,
     },
     include: {
-      Friends: true,
+      Friends: {
+        include: {
+          Friend_User: true,
+        },
+      },
     },
   });
 

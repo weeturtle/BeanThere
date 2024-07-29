@@ -1,6 +1,6 @@
 import { Router } from "express";
 import axios from "axios";
-import { AUTH_URL } from "../util/envs";
+import { AUTH_URL } from "../../util/envs";
 
 const authRouter = Router();
 

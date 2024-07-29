@@ -1,12 +1,12 @@
 import { Router } from "express";
-import prisma from "../database";
+import prisma from "../../database";
 import axios from "axios";
-import { AUTH_URL } from "../util/envs";
-import authenticate from "../util/authenticate";
+import { AUTH_URL } from "../../util/envs";
+import authenticate from "../../util/authenticate";
 
 const userRouter = Router();
 
-userRouter.post("/", async (req, res) => {
+userRouter.post("/signup", async (req, res) => {
   const { name, email, password } = req.body;
 
   if (!name || !email || !password) {

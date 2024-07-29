@@ -1,11 +1,11 @@
 import Express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import userRouter from "./routers/userRouter";
-import cafeRouter from "./routers/cafeRouter";
-import reviewRouter from "./routers/reviewRouter";
-import friendRouter from "./routers/friendRouter";
-import authRouter from "./routers/authRouter";
+import userRouter from "./routers/auth";
+import cafeRouter from "./routers/cafes";
+import reviewRouter from "./routers/reviews";
+import friendRouter from "./routers/friends";
+import authRouter from "./routers/auth";
 import { PORT, AUTH_URL } from "./util/envs";
 
 const app = Express();
