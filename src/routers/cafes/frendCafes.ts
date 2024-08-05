@@ -105,8 +105,5 @@ export const findCommonCafeFriend = async (
     },
   });
 
-  // Will this find cafes mutually starred by all passed users? answer below please
-  //
-
   return starred_cafes;
 };
