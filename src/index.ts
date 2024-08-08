@@ -7,6 +7,8 @@ import verifyHandler from "./handlers/verifyHandler";
 import logoutHandler from "./handlers/logoutHandler";
 import signupHandler from "./handlers/signupHandler";
 import deleteHandler from "./handlers/deleteHandler";
+import prisma from "./database";
+import usersHandler from "./handlers/usersHandler";
 
 if (!SECRET) {
   console.error("SECRET is not defined");
@@ -23,6 +25,7 @@ app.post("/login", loginHandler);
 app.get("/verify", verifyHandler);
 app.post("/logout", logoutHandler);
 app.post("/signup", signupHandler);
+app.get("/users", usersHandler);
 app.delete("/delete/:id", deleteHandler);
 
 app.listen(PORT, () => {
