@@ -12,7 +12,7 @@ interface IReviewProps {
 
 const App = () => {
   const [reviews, setReviews] = useState<IReviewProps[]>([]);
-  const { signout, axiosClient } = useAuth();
+  const { axiosClient } = useAuth();
 
   const fetchReviews = async () => {
     // Fetch reviews from the server
@@ -31,16 +31,7 @@ const App = () => {
   return (
     <View>
       <Link href="/review">
-        <Text>See Reviews</Text>
-      </Link>
-      <Link href="/cafes">
-        <Text>See Cafes</Text>
-      </Link>
-      <Link href="/profile">
-        <Text>See Profile</Text>
-      </Link>
-      <Link href="/friends">
-        <Text>See Friends</Text>
+        <Text>Add Reviews</Text>
       </Link>
       <Pressable onPress={fetchReviews}>
         <Text>Fetch reviews</Text>
@@ -58,9 +49,6 @@ const App = () => {
           ))
         }
       </View>
-      <Pressable onPress={signout}>
-        <Text>Sign out</Text>
-      </Pressable>
     </View>
   );
 };

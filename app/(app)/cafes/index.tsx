@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "expo-router";
 import { View, Text, Pressable } from "react-native";
-import axios from "axios";
 import { useAuth } from "@/hooks/useAuth";
 
 interface ICafe {
@@ -27,6 +27,9 @@ const CafePage = () => {
   return (
     <View>
       <Text> Cafe Page </Text>
+      <Link href="/profile/starredCafes">
+        <Text>Starred Cafes</Text>
+      </Link>
       <Pressable onPress={fetchCafes}>
         <Text>Fetch Cafes</Text>
       </Pressable>

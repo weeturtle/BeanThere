@@ -8,8 +8,9 @@ const Footer = () => {
       <Link href="/">
         <Text style={styles.footerText}>Home</Text>
       </Link>
-      <Link href="/map">
-        <Text style={styles.footerText}>Map</Text>
+      <Link href="/cafes">
+        {/* Temp */}
+        <Text style={styles.footerText}>Cafes</Text>
       </Link>
       <Link href="/profile">
         <Text style={styles.footerText}>Profile</Text>
