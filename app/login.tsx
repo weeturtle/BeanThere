@@ -1,6 +1,6 @@
 import { useAuth } from "@/hooks/useAuth";
-import { router } from "expo-router";
-import React, { useState } from "react";
+import { Link, router } from "expo-router";
+import React, { useEffect, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 
 const LoginPage = () => {
@@ -18,6 +18,14 @@ const LoginPage = () => {
       router.replace("/");
     }
   };
+
+  useEffect(() => {
+    if (token) {
+      router.replace("/");
+    }
+
+    console.log(`Token: ${token}`);
+  }, [token]);
 
   return (
     <View>
@@ -48,6 +56,10 @@ const LoginPage = () => {
       <Pressable onPress={handleLogin}>
         <Text>Login</Text>
       </Pressable>
+
+      <Link href="/signup">
+        <Text>Register</Text>
+      </Link>
       <Text>{token}</Text>
     </View>
   );
