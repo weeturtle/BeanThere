@@ -1,10 +1,17 @@
 import { Router } from "express";
 import prisma from "../../database";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { AUTH_URL } from "../../util/envs";
 import authenticate from "../../util/authenticate";
+import MatchTest from "../../util/matchTest";
 
 const userRouter = Router();
+
+userRouter.get("/test", async (_, res) => {
+  const result = await MatchTest();
+
+  return res.json({ result }).status(200);
+});
 
 userRouter.post("/signup", async (req, res) => {
   const { name, email, password } = req.body;
@@ -13,16 +20,13 @@ userRouter.post("/signup", async (req, res) => {
     return res.status(400).json({ message: "Missing information" });
   }
 
-  const auth_response = await axios.post(AUTH_URL + "/signup", {
-    email,
-    password,
-  });
-
-  if (auth_response.status !== 200 || !auth_response.data.userId) {
-    return res.status(401).json({ message: "Failed to create account" });
-  }
-
+  console.log("Error check start");
   try {
+    const auth_response = await axios.post(AUTH_URL + "/signup", {
+      email,
+      password,
+    });
+
     await prisma.users.create({
       data: {
         id: auth_response.data.userId,
@@ -30,11 +34,21 @@ userRouter.post("/signup", async (req, res) => {
         email,
       },
     });
+    return res.json({ token: auth_response.data.token }).status(200);
   } catch (error) {
-    return res.status(500).json({ message: "Failed to create account" });
-  }
+    if (error instanceof AxiosError) {
+      if (error.response?.status === 400) {
+        return res.status(400).json({ message: "User already exists" });
+      }
 
-  return res.json({ token: auth_response.data.token }).status(200);
+      return res
+        .status(500)
+        .json({ message: "Auth: Failed to create account" });
+    }
+    return res
+      .status(500)
+      .json({ message: "Server: Failed to create account" });
+  }
 });
 
 userRouter.use(authenticate);
@@ -142,7 +156,8 @@ userRouter.get("/search/:name", async (req, res) => {
 });
 
 userRouter.delete("/", async (req, res) => {
-  const userId = req.headers["user_id"] as string;
+  // const userId = req.headers["user_id"] as string;
+  const userId = "clzigzmix0000uhsgwr1z9n5q";
 
   if (!userId) {
     return res.status(400).json({ message: "User ID is required" });
@@ -154,7 +169,7 @@ userRouter.delete("/", async (req, res) => {
 
   await prisma.users.delete({
     where: {
-      id: userId as string,
+      id: userId,
     },
   });
 

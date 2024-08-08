@@ -7,6 +7,7 @@ import reviewRouter from "./routers/reviews";
 import friendRouter from "./routers/friends";
 import authRouter from "./routers/auth";
 import { PORT, AUTH_URL } from "./util/envs";
+import prisma from "./database";
 
 const app = Express();
 
