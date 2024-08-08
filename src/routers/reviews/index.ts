@@ -61,23 +61,38 @@ reviewRouter.get("/dashboard", async (req, res) => {
     where: {
       user_id: user_id,
     },
-    select: {
+    include: {
       Friend_User: {
-        select: {
-          Reviews: true,
+        include: {
+          Reviews: {
+            include: {
+              Cafe: true,
+            },
+          },
         },
       },
     },
+    take: 10,
   });
 
   // Flatten the reviews into a single array
   const flat_friend_review = friends_reviews
-    .map((friend) => friend.Friend_User.Reviews)
+    .map((friend) => {
+      return friend.Friend_User.Reviews.map((review) => {
+        return {
+          ...review,
+          name: friend.Friend_User.name,
+        };
+      });
+    })
     .flat();
 
   const reviews = await prisma.reviews.findMany({
     where: {
       user_id: user_id,
+    },
+    include: {
+      Cafe: true,
     },
   });
 

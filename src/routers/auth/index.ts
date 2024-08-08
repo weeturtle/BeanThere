@@ -1,7 +1,6 @@
 import { Router } from "express";
 import axios from "axios";
 import { AUTH_URL } from "../../util/envs";
-import prisma from "../../database";
 
 const authRouter = Router();
 
