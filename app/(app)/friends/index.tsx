@@ -1,3 +1,4 @@
+import FriendSearch from "@/components/friend";
 import { useAuth } from "@/hooks/useAuth";
 import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
@@ -27,6 +28,8 @@ const FriendsPage = () => {
       {friends.map((friend) => (
         <Text key={friend.id}>{friend.name}</Text>
       ))}
+
+      <FriendSearch />
     </View>
   );
 };

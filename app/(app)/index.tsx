@@ -16,8 +16,7 @@ const App = () => {
 
   const fetchReviews = async () => {
     // Fetch reviews from the server
-    const response =
-      await axiosClient.get<IReviewProps[]>("/reviews/dashboard");
+    const response = await axiosClient.get<IReviewProps[]>("/review/dashboard");
 
     if (response.status !== 200) {
       console.error("Failed to fetch reviews");
