@@ -1,13 +1,16 @@
 import Review from "@/components/Review";
 import { useAuth } from "@/hooks/useAuth";
 import React, { useState } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, Text, View, StyleSheet } from "react-native";
 import { Link } from "expo-router";
 
 interface IReviewProps {
-  user_id: string;
+  name: string;
   review: string;
   rating: number;
+  Cafe: {
+    name: string;
+  };
 }
 
 const App = () => {
@@ -36,15 +39,16 @@ const App = () => {
       <Pressable onPress={fetchReviews}>
         <Text>Fetch reviews</Text>
       </Pressable>
-      <View>
+      <View style={styles.reviewsContainer}>
         {
           // Add some fake reviews for now
           reviews.map((review, i) => (
             <Review
               key={i}
-              user_id={review.user_id}
+              name={review.name}
               rating={review.rating}
               review={review.review}
+              cafe={review.Cafe.name}
             />
           ))
         }
@@ -52,5 +56,15 @@ const App = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  reviewsContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+  },
+});
 
 export default App;

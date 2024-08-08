@@ -1,21 +1,31 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 interface IReviewProps {
-  user_id: string;
+  name: string;
   review: string;
   rating: number;
+  cafe: string;
 }
 
-const Review = (props: IReviewProps) => {
+const Review = ({ name, review, rating, cafe }: IReviewProps) => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Review</Text>
-      <Text>{props.user_id}</Text>
-      <Text>{props.rating}</Text>
-      <Text>{props.review}</Text>
+      <Text>{name}</Text>
+      <Text>{rating}</Text>
+      <Text>{review}</Text>
+      <Text>{cafe}</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+  },
+});
 
 export default Review;
