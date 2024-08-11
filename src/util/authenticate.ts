@@ -8,6 +8,7 @@ interface AuthResponse {
 }
 
 const authenticate = async (context: unknown): Promise<AuthResponse | null> => {
+  console.log((context as AuthContext).token);
   try {
     const response = await axios.get<AuthResponse>(AUTH_URL + "/verify", {
       headers: {

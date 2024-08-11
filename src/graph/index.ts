@@ -62,7 +62,7 @@ export const typeDefs = gql`
   }
 
   type Query {
-    user(email: String!): User
+    user(email: String, id: String): User
     cafe(id: ID!): Cafe
     reviews: [Review]!
     review(id: ID!): Review

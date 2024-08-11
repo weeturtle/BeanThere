@@ -1,9 +1,9 @@
 import { cafeQueryById, cafesQuery } from "./cafe";
 import { allReviewQuery, reviewQueryById } from "./review";
-import { userQueryByEmail } from "./user";
+import { userQuery } from "./user";
 
 const queryResolver = {
-  user: userQueryByEmail,
+  user: userQuery,
   cafe: cafeQueryById,
   review: reviewQueryById,
   cafes: cafesQuery,
