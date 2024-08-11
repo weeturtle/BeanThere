@@ -99,6 +99,67 @@ reviewRouter.get("/dashboard", async (req, res) => {
   return res.json([...flat_friend_review, ...reviews]);
 });
 
+reviewRouter.get("/", async (req, res) => {
+  // Fetch all review for the dashboard
+  // Include all the information stated in the format.yaml file
+
+  const user_id = req.headers["user_id"] as string;
+
+  //  Fetch if the cafe is starred by the user
+  const reviews = await prisma.users.findMany({
+    where: {
+      id: user_id,
+    },
+    select: {
+      Friends: {
+        select: {
+          Friend_User: {
+            select: {
+              // Friend information
+              id: true,
+              name: true,
+              // Reviews by the friend
+              Reviews: {
+                select: {
+                  // Review information
+                  id: true,
+                  time: true,
+                  rating: true,
+                  drink: true,
+                  review: true,
+                  // Cafe review is for
+                  Cafe: {
+                    select: {
+                      // Cafe information
+                      id: true,
+                      name: true,
+                      address: true,
+                      // If cafe_id and user_id is in the starred_cafes table
+                      // then the cafe is starred by the user
+                      Starred_Cafes: {
+                        select: {
+                          user_id: true,
+                        },
+                        where: {
+                          user_id: user_id,
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+
+  console.log(reviews);
+
+  return res.json(reviews).status(200);
+});
+
 reviewRouter.get("/:user_id", async (req, res) => {
   const { user_id } = req.params;
 
