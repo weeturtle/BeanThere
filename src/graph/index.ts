@@ -46,13 +46,6 @@ export const typeDefs = gql`
     Review: Review!
   }
 
-  type Query {
-    user(email: String!): User
-    cafe(id: ID!): Cafe
-    review(id: ID!): Review
-    cafes: [Cafe]!
-  }
-
   input LoginRequest {
     email: String!
     password: String!
@@ -68,9 +61,18 @@ export const typeDefs = gql`
     token: String!
   }
 
+  type Query {
+    user(email: String!): User
+    cafe(id: ID!): Cafe
+    reviews: [Review]!
+    review(id: ID!): Review
+    cafes(city: String): [Cafe]!
+  }
+
   type Mutation {
     login(input: LoginRequest!): AuthPayload
     register(input: RegisterRequest!): AuthPayload
+    logout: Boolean
 
     add_review(
       rating: Int!

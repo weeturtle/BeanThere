@@ -14,8 +14,14 @@ export interface Cafe {
 
 export interface Review {
   id: string;
+  cafe_id: string;
+  user_id: string;
   rating: number;
   review: string;
   drink: string;
-  time: string;
+  time: Date;
+}
+
+export interface AuthContext {
+  token?: string;
 }

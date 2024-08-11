@@ -1,31 +1,35 @@
-import { User } from "../graph/types";
+import { Cafe, Review, User } from "../graph/types";
+import prisma from "../database";
 
 const userResolver = {
-  Friends: async (user: User) => {
-    console.log("Fetching friends");
-    return [{ id: 1, email: "ali@gmail.com", name: "Ali" }];
-  },
-  Starred_Cafes: (user: User) => {
-    return [
-      {
-        id: 1,
-        name: "Cafe 1",
-        description: "Cafe 1",
-        address: "1234 Cafe St",
-        city: "Cafe City",
+  Friends: async ({ id }: User): Promise<User[] | null> => {
+    return prisma.users.findMany({
+      where: {
+        Friends: {
+          some: {
+            friend_user_id: id,
+          },
+        },
       },
-    ];
+    });
   },
-  Reviews: async (user: User) => {
-    return [
-      {
-        id: 1,
-        rating: 5,
-        review: "Great cafe",
-        drink: "Latte",
-        time: "2021-01-01",
+  Starred_Cafes: ({ id }: User): Promise<Cafe[] | null> => {
+    return prisma.cafes.findMany({
+      where: {
+        Starred_Cafes: {
+          some: {
+            user_id: id,
+          },
+        },
       },
-    ];
+    });
+  },
+  Reviews: async ({ id }: User): Promise<Review[] | null> => {
+    return prisma.reviews.findMany({
+      where: {
+        user_id: id,
+      },
+    });
   },
 };
 

@@ -1,9 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const user_1 = require("./user");
 const queryResolver = {
-    user: async (parent, args, context) => {
-        return { id: 1, email: "max@gmail.com", name: "Max" };
-    },
+    user: user_1.userQueryByEmail,
     cafe: async (parent, args, context) => {
         return {
             id: 1,

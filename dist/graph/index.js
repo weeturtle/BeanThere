@@ -51,13 +51,6 @@ exports.typeDefs = (0, graphql_tag_1.gql) `
     Review: Review!
   }
 
-  type Query {
-    user(email: String!): User
-    cafe(id: ID!): Cafe
-    review(id: ID!): Review
-    cafes: [Cafe]!
-  }
-
   input LoginRequest {
     email: String!
     password: String!
@@ -71,6 +64,13 @@ exports.typeDefs = (0, graphql_tag_1.gql) `
 
   type AuthPayload {
     token: String!
+  }
+
+  type Query {
+    user(email: String!): User
+    cafe(id: ID!): Cafe
+    review(id: ID!): Review
+    cafes: [Cafe]!
   }
 
   type Mutation {
