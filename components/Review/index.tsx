@@ -22,9 +22,7 @@ const Review = ({ name, review, rating, cafe }: IReviewProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
+    width: "100%",
   },
 });
 
