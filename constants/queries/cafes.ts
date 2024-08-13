@@ -10,3 +10,15 @@ export const ALLCAFES = gql`
     }
   }
 `;
+
+export const CAFE = gql`
+  query Cafe($id: ID!) {
+    cafe(id: $id) {
+      id
+      name
+      description
+      address
+      city
+    }
+  }
+`;

@@ -2,6 +2,7 @@ import React from "react";
 import { ALLCAFES } from "@/constants/queries/cafes";
 import { useSuspenseQuery } from "@apollo/client";
 import { View, Text } from "react-native";
+import { Link } from "expo-router";
 
 interface ICafe {
   id: string;
@@ -30,10 +31,12 @@ const Cafes = () => {
   );
 };
 
-const Cafe = ({ name, city, address }: ICafe) => {
+const Cafe = ({ name, city, address, id }: ICafe) => {
   return (
     <View>
-      <Text>{name}</Text>
+      <Link href={`/cafes/${id}`}>
+        <Text>{name}</Text>
+      </Link>
       <Text>{city}</Text>
       <Text>{address}</Text>
     </View>
