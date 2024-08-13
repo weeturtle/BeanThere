@@ -4,6 +4,7 @@ export const DASHBOARD_REVIEWS = gql`
   query DashboardReviews {
     reviews {
       id
+      time
       User {
         name
       }

@@ -1,8 +1,12 @@
+import { DASHBOARD_REVIEWS } from "@/constants/queries/reviews";
+import { useSuspenseQuery } from "@apollo/client";
 import React from "react";
 import { Text, View } from "react-native";
+import Review from ".";
 
-export interface IReviews {
+export interface IReview {
   id: string;
+  time: unknown;
   User: {
     name: string;
   };
@@ -16,25 +20,20 @@ export interface IReviews {
 }
 
 interface ReviewProps {
-  reviews: IReviews[];
+  reviews: IReview[];
 }
 
-const Reviews = ({ reviews }: ReviewProps) => {
+const Reviews = () => {
+  const { data, error } = useSuspenseQuery<ReviewProps>(DASHBOARD_REVIEWS);
+
+  if (error) {
+    return <Text>Error</Text>;
+  }
+
   return (
     <View>
-      {reviews.map((review) => (
-        <View key={review.id}>
-          <View>
-            <View>
-              <View>
-                <Text>{review.User.name}</Text>
-                <Text>{review.Cafe.name}</Text>
-              </View>
-              <Text>{review.rating}</Text>
-            </View>
-            <Text>{review.review}</Text>
-          </View>
-        </View>
+      {data.reviews.map((review) => (
+        <Review key={review.id} {...review} />
       ))}
     </View>
   );
