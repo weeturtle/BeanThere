@@ -1,70 +1,51 @@
-import Review from "@/components/Review";
-import { useAuth } from "@/hooks/useAuth";
-import React, { useState } from "react";
-import { Pressable, Text, View, StyleSheet } from "react-native";
+// import Review from "@/components/Review";
+// import { useAuth } from "@/hooks/useAuth";
+import React, { Suspense, useState } from "react";
+import { Text, View } from "react-native";
 import { Link } from "expo-router";
+import Reviews, { IReviews } from "@/components/Review/reviews";
+import { DASHBOARD_REVIEWS } from "@/constants/queries/reviews";
+import { useQuery, useSuspenseQuery } from "@apollo/client";
 
-interface IReviewProps {
-  name: string;
-  review: string;
-  rating: number;
-  Cafe: {
-    name: string;
-  };
-}
+// interface IReviewProps {
+//   name: string;
+//   review: string;
+//   rating: number;
+//   Cafe: {
+//     name: string;
+//   };
+// }
 
 const App = () => {
-  const [reviews, setReviews] = useState<IReviewProps[]>([]);
-  const { axiosClient } = useAuth();
+  const {
+    data: { reviews },
+    error,
+  } = useSuspenseQuery<{ reviews: IReviews[] }>(DASHBOARD_REVIEWS);
 
-  const fetchReviews = async () => {
-    // Fetch reviews from the server
-    const response = await axiosClient.get<IReviewProps[]>("/review/dashboard");
-
-    if (response.status !== 200) {
-      console.error("Failed to fetch reviews");
-      return;
-    }
-
-    setReviews(response.data);
-
-    console.log(response.data);
-  };
+  if (error) {
+    return <Text>Error: {error.message}</Text>;
+  }
 
   return (
     <View>
       <Link href="/review">
         <Text>Add Reviews</Text>
       </Link>
-      <Pressable onPress={fetchReviews}>
-        <Text>Fetch reviews</Text>
-      </Pressable>
-      <View style={styles.reviewsContainer}>
-        {
-          // Add some fake reviews for now
-          reviews.map((review, i) => (
-            <Review
-              key={i}
-              name={review.name}
-              rating={review.rating}
-              review={review.review}
-              cafe={review.Cafe.name}
-            />
-          ))
-        }
-      </View>
+      <Suspense fallback={<Text>Loading...</Text>}>
+        <Reviews reviews={reviews} />
+      </Suspense>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  reviewsContainer: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 10,
-  },
-});
+// const styles = StyleSheet.create({
+//   reviewsContainer: {
+//     display: "flex",
+//     flexDirection: "column",
+//     alignItems: "center",
+//     justifyContent: "center",
+//     gap: 10,
+//   },
+// });
 
 export default App;

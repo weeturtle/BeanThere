@@ -4,7 +4,7 @@ import { Link } from "expo-router";
 import { useAuth } from "@/hooks/useAuth";
 
 const ProfilePage = () => {
-  const { signout } = useAuth();
+  const { signOut } = useAuth();
 
   return (
     <View>
@@ -13,7 +13,7 @@ const ProfilePage = () => {
         <Text>See Friends</Text>
       </Link>
 
-      <Pressable onPress={signout}>
+      <Pressable onPress={signOut}>
         <Text>Sign out</Text>
       </Pressable>
     </View>
