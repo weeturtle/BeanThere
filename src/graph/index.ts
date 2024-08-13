@@ -57,6 +57,10 @@ export const typeDefs = gql`
     password: String!
   }
 
+  input VerifyRequest {
+    token: String!
+  }
+
   type AuthPayload {
     token: String!
   }
@@ -72,6 +76,7 @@ export const typeDefs = gql`
   type Mutation {
     login(input: LoginRequest!): AuthPayload
     register(input: RegisterRequest!): AuthPayload
+    verify(input: VerifyRequest!): Boolean
     logout: Boolean
 
     add_review(

@@ -1,4 +1,4 @@
-import { AuthContext, User } from "../../graph/types";
+import { User } from "../../graph/types";
 import prisma from "../../database";
 import { GraphQLError } from "graphql";
 import authenticate from "../../util/authenticate";

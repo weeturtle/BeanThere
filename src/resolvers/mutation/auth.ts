@@ -72,6 +72,27 @@ const authMutationResolvers = {
       throw new GraphQLError("Unable to logout");
     }
   },
+  verify: async (
+    _: any,
+    { input: { token } }: { input: { token: string } },
+  ) => {
+    console.log(`Testing token: ${token}`);
+    try {
+      const response = await axiosAuthClient.get("/verify", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.status !== 200) {
+        throw new GraphQLError("Unauthorized");
+      }
+
+      return true;
+    } catch (e) {
+      return false;
+    }
+  },
 };
 
 export default authMutationResolvers;
