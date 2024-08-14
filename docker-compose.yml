@@ -1,0 +1,20 @@
+services:
+  auth-db:
+    image: postgres:16
+    ports:
+      - "5433:5432"
+    user: postgres
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    restart: always
+
+  auth-api:
+    build: .
+    ports:
+      - "4001:4001"
+    depends_on:
+      - auth-db
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
