@@ -1,35 +1,28 @@
-import Express from "express";
-import cors from "cors";
-import bodyParser from "body-parser";
-import userRouter from "./routers/users";
-import cafeRouter from "./routers/cafes";
-import reviewRouter from "./routers/reviews";
-import friendRouter from "./routers/friends";
-import authRouter from "./routers/auth";
-import { PORT, AUTH_URL } from "./util/envs";
-import prisma from "./database";
+import { ApolloServer } from "@apollo/server";
+import { buildSubgraphSchema } from "@apollo/subgraph";
+import { startStandaloneServer } from "@apollo/server/standalone";
+import { typeDefs, resolvers } from "./graph";
+import { AuthContext } from "./graph/types";
 
-const app = Express();
+const main = async () => {
+  const server = new ApolloServer({
+    schema: buildSubgraphSchema({
+      typeDefs,
+      resolvers,
+    }),
+    csrfPrevention: false,
+  });
 
-if (!AUTH_URL) {
-  console.error("AUTH_URL is not defined");
-  process.exit(1);
-}
+  const { url } = await startStandaloneServer<AuthContext>(server, {
+    listen: {
+      port: 4000,
+    },
+    context: async ({ req }) => ({
+      token: req.headers.authorization,
+    }),
+  });
 
-if (!PORT) {
-  console.error("API_PORT is not definde");
-  process.exit(1);
-}
+  console.log(`🚀 Apollo ready at ${url}`);
+};
 
-app.use(bodyParser.json());
-app.use(cors());
-
-app.use("/user", userRouter);
-app.use("/cafe", cafeRouter);
-app.use("/review", reviewRouter);
-app.use("/friend", friendRouter);
-app.use("/auth", authRouter);
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+main();

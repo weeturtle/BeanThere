@@ -1,34 +1,30 @@
-import axios, { AxiosResponse } from "axios";
-import { Request, Response, NextFunction } from "express";
+import axios from "axios";
 import { AUTH_URL } from "./envs";
+import { AuthContext } from "../graph/types";
 
 interface AuthResponse {
-  message: string;
   user_id: string;
+  message: string;
 }
 
-const authenticate = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  let response: AxiosResponse<AuthResponse>;
+const authenticate = async (context: unknown): Promise<AuthResponse | null> => {
+  console.log((context as AuthContext).token);
   try {
-    response = await axios.get(AUTH_URL + "/verify", {
+    const response = await axios.get<AuthResponse>(AUTH_URL + "/verify", {
       headers: {
-        Authorization: req.headers.authorization,
+        Authorization: (context as AuthContext).token,
       },
     });
-  } catch (error) {
-    return res.status(401).json({ message: "Invalid token" });
-  }
 
-  if (response.status !== 200) {
-    return res.status(401).json({ message: "Invalid token" });
-  }
+    if (response.status !== 200) {
+      return null;
+    }
 
-  req.headers.user_id = response.data.user_id;
-  next();
+    return response.data;
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
 };
 
 export default authenticate;
