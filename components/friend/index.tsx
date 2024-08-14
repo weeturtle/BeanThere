@@ -1,95 +1,44 @@
-import { useAuth } from "@/hooks/useAuth";
-import React, {
-  useState,
-  useEffect,
-  Suspense,
-  Dispatch,
-  SetStateAction,
-} from "react";
-import {
-  View,
-  TextInput,
-  Text,
-  NativeSyntheticEvent,
-  TextInputChangeEventData,
-  Pressable,
-} from "react-native";
+import React from "react";
+import { ALLFRIENDS } from "@/constants/queries/friends";
+import { useSuspenseQuery } from "@apollo/client";
+import { View, Text } from "react-native";
+import { Link } from "expo-router";
 
-interface IFriend {
-  id: string;
-  name: string;
-  isFriend: boolean;
+interface FriendsResponse {
+  user: {
+    Friends: {
+      id: string;
+      name: string;
+    }[];
+  };
 }
 
-// How do i add a debounce to this component? copilot answer below
+const FriendsView = () => {
+  const { data, error } = useSuspenseQuery<FriendsResponse>(ALLFRIENDS);
 
-const FriendSearch = () => {
-  const [search, setSearch] = useState("");
-  const [friends, setFriends] = useState<IFriend[]>([]);
+  console.log(data);
 
-  const { axiosClient } = useAuth();
+  if (error) {
+    return <Text>Error! {error.message}</Text>;
+  }
 
-  const handleChange = (
-    event: NativeSyntheticEvent<TextInputChangeEventData>,
-  ) => {
-    setSearch(event.nativeEvent.text);
-  };
-
-  useEffect(() => {
-    const fetchFriends = async () => {
-      if (!search) {
-        setFriends([]);
-        return;
-      }
-
-      const response = await axiosClient.get<IFriend[]>(
-        `/friend/find?search=${search}`,
-      );
-      const friends = response.data;
-
-      console.log(friends);
-      setFriends(friends);
-    };
-    fetchFriends();
-  }, [search]);
-
-  const modifyFriend = async (id: string, isFriend: boolean) => {
-    if (!isFriend) {
-      console.log("Adding friend");
-      await axiosClient.post(`/friend`, {
-        friend_id: id,
-      });
-    } else {
-      console.log("Removing friend");
-      await axiosClient.delete(`/friend/${id}`);
-    }
-  };
+  if (data.user.Friends.length === 0) {
+    return (
+      <View>
+        <Text>You have no friends</Text>
+      </View>
+    );
+  }
 
   return (
     <View>
-      <TextInput
-        placeholder="Search for a friend"
-        value={search}
-        onChange={handleChange}
-      />
-      <Suspense fallback={<Text>Loading...</Text>}>
-        {friends.map((friend) => (
-          <View key={friend.id}>
-            <Text>{friend.name}</Text>
-            <Pressable onPress={() => modifyFriend(friend.id, friend.isFriend)}>
-              <Text>{friend.isFriend ? "Unfriend" : "Add"}</Text>
-            </Pressable>
-          </View>
-        ))}
-      </Suspense>
+      {data.user.Friends.map(({ id, name }) => (
+        <Link href={`/users/${id}`}>
+          <Text>{name}</Text>
+        </Link>
+      ))}
     </View>
   );
 };
 
-export default FriendSearch;
-
-// How could we improve this component?
-// 1. Add a debounce to the input
-// 2. Add a loading state
-// 3. Add a way to select a friend
-// 4. Add a way to add a friend
+export default FriendsView;
