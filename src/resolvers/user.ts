@@ -3,15 +3,16 @@ import prisma from "../database";
 
 const userResolver = {
   Friends: async ({ id }: User): Promise<User[] | null> => {
-    return prisma.users.findMany({
+    const friends = await prisma.friends.findMany({
       where: {
-        Friends: {
-          some: {
-            friend_user_id: id,
-          },
-        },
+        user_id: id,
+      },
+      select: {
+        Friend_User: true,
       },
     });
+
+    return friends.map((friend) => friend.Friend_User);
   },
   Starred_Cafes: ({ id }: User): Promise<Cafe[] | null> => {
     return prisma.cafes.findMany({

@@ -46,6 +46,30 @@ export const typeDefs = gql`
     Review: Review!
   }
 
+  type UserSearch {
+    user: User!
+    isFriend: Boolean!
+  }
+
+  input NewFriendRequest {
+    email: String!
+  }
+
+  input NewCafeRequest {
+    name: String!
+    description: String!
+    address: String!
+    city: String!
+  }
+
+  input NewReviewRequest {
+    rating: Int!
+    review: String!
+    drink: String!
+    time: String!
+    cafe_id: ID!
+  }
+
   input LoginRequest {
     email: String!
     password: String!
@@ -71,6 +95,7 @@ export const typeDefs = gql`
     reviews: [Review]!
     review(id: ID!): Review
     cafes(city: String): [Cafe]!
+    searchUser(prompt: String!): [UserSearch]!
   }
 
   type Mutation {
@@ -79,20 +104,9 @@ export const typeDefs = gql`
     verify(input: VerifyRequest!): Boolean
     logout: Boolean
 
-    add_review(
-      rating: Int!
-      review: String!
-      drink: String!
-      time: String!
-      cafe_id: ID!
-    ): Review
-    add_cafe(
-      name: String!
-      description: String!
-      address: String!
-      city: String!
-    ): Cafe
-    add_friend(email: String!): User
+    add_review(input: NewReviewRequest!): Review
+    add_cafe(input: NewCafeRequest!): Cafe
+    add_friend(input: NewFriendRequest!): User
   }
 `;
 

@@ -1,6 +1,6 @@
 import { cafeQueryById, cafesQuery } from "./cafe";
 import { allReviewQuery, reviewQueryById } from "./review";
-import { userQuery } from "./user";
+import { userFriendsQuery, userQuery } from "./user";
 
 const queryResolver = {
   user: userQuery,
@@ -8,6 +8,7 @@ const queryResolver = {
   review: reviewQueryById,
   cafes: cafesQuery,
   reviews: allReviewQuery,
+  searchUser: userFriendsQuery,
 };
 
 export default queryResolver;
