@@ -8,8 +8,10 @@ interface ISignup {
   password: string;
 }
 
-const signupHandler = async (req: Request, res: Response) => {
+const registerHandler = async (req: Request, res: Response) => {
   const { email, password } = req.body as ISignup;
+
+  console.log(`Email: ${email}, Password: ${password}`);
 
   if (!email || !password) {
     return res.status(400).json({ message: "Email and password are required" });
@@ -38,7 +40,7 @@ const signupHandler = async (req: Request, res: Response) => {
 
   return res
     .status(200)
-    .json({ message: "Signup successful", token, userId: response.id });
+    .json({ message: "Signup successful", token, id: response.id });
 };
 
-export default signupHandler;
+export default registerHandler;

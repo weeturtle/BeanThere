@@ -1,5 +1,6 @@
 import { GraphQLError } from "graphql";
 import { axiosAuthClient } from "../../util/envs";
+import prisma from "../../database";
 
 interface ILoginRequest {
   email: string;
@@ -39,11 +40,10 @@ const authMutationResolvers = {
   },
   register: async (
     _: any,
-    { name, email, password }: IRegisterRequest,
+    { input: { name, email, password } }: { input: IRegisterRequest },
   ): Promise<AuthResponse | null> => {
     try {
       const response = await axiosAuthClient.post("/register", {
-        name,
         email,
         password,
       });
@@ -51,6 +51,14 @@ const authMutationResolvers = {
       if (response.status !== 200) {
         throw new GraphQLError("Unauthorized");
       }
+
+      prisma.users.create({
+        data: {
+          id: response.data.id,
+          email: email,
+          name: name,
+        },
+      });
 
       return { token: response.data.token };
     } catch (e) {

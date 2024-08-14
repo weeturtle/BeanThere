@@ -10,7 +10,7 @@
   "devDependencies": {
     "@apollo/server": "^4.11.0",
     "@apollo/subgraph": "^2.8.4",
-    "@prisma/client": "^5.17.0",
+    "@prisma/client": "^5.18.0",
     "@types/cors": "^2.8.17",
     "@types/node": "^20.14.12",
     "axios": "^1.7.2",
@@ -18,7 +18,7 @@
     "cors": "^2.8.5",
     "graphql": "^16.9.0",
     "graphql-tag": "^2.12.6",
-    "prisma": "^5.17.0",
+    "prisma": "^5.18.0",
     "typescript": "^5.5.4"
   },
   "dependencies": {
