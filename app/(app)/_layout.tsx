@@ -1,19 +1,14 @@
-import React from "react";
-import { Redirect, Stack } from "expo-router";
+import React, { useEffect } from "react";
+import { Stack } from "expo-router";
 import { useAuth } from "@/hooks/useAuth";
-import { Text } from "react-native";
 import Footer from "@/components/footer";
 
 const AppLayout = () => {
-  const { token, isLoading } = useAuth();
+  const { verifyToken, token } = useAuth();
 
-  if (isLoading) {
-    return <Text>Loading...</Text>;
-  }
-
-  if (!token) {
-    return <Redirect href="/login" />;
-  }
+  useEffect(() => {
+    verifyToken();
+  }, [token]);
 
   return (
     <>

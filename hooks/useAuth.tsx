@@ -1,143 +1,104 @@
-import axios, { AxiosInstance } from "axios";
+import { VERIFY } from "@/constants/mutations/auth";
+import { useMutation } from "@apollo/client";
+import { router } from "expo-router";
 import React, {
   createContext,
-  useContext,
   ReactNode,
-  ReactElement,
+  useContext,
+  useEffect,
+  useMemo,
   useState,
 } from "react";
 
-interface IAuthState {
+interface VerifyRequest {
   token: string;
-  isLoading: boolean;
-  login: (email: string, password: string) => Promise<boolean>;
-  signup: (email: string, password: string, name: string) => Promise<boolean>;
-  verifySession: () => Promise<boolean>;
-  signout: () => void;
-  axiosClient: AxiosInstance;
 }
 
-const AuthContext = createContext<IAuthState | undefined>(undefined);
+interface VerifyResponse {
+  verify: boolean;
+}
 
-const useAuth = (): IAuthState => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-};
+interface Context {
+  signIn: (token: string) => void;
+  signOut: () => void;
+  verifyToken: () => void;
+  token: string;
+}
 
-const AuthProvider = (props: { children: ReactNode }): ReactElement => {
+const AuthContext = createContext<Context>({
+  signIn: () => {},
+  signOut: () => {},
+  verifyToken: () => {},
+  token: "",
+});
+
+const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [token, setToken] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  // Only include auth header if token is present
+  const signIn = (token: string) => {
+    localStorage.setItem("token", token);
+    setToken(token);
+  };
 
-  const axiosClient = axios.create({
-    baseURL: "http://localhost:4000",
-    headers: {
-      Authorization: token ? `Bearer ${token}` : "",
+  const signOut = () => {
+    localStorage.removeItem("token");
+    setToken("");
+    router.replace("/login");
+  };
+
+  const [verify] = useMutation<VerifyResponse, VerifyRequest>(VERIFY, {
+    onCompleted: (data) => {
+      console.log(data);
+      if (!data.verify) {
+        signOut();
+      }
     },
   });
 
-  const verifySession = async (): Promise<boolean> => {
-    setIsLoading(true);
-    if (!token) {
-      setIsLoading(false);
+  const verifyToken = async (): Promise<boolean> => {
+    try {
+      const response = await verify({
+        variables: {
+          token: localStorage.getItem("token") || "",
+        },
+      });
+
+      if (!response.data) {
+        signOut();
+        return false;
+      }
+
+      setToken(localStorage.getItem("token") || "");
+      return true;
+    } catch (error) {
+      signOut();
       return false;
     }
-
-    try {
-      const response = await axiosClient.post("/auth/verify");
-
-      if (response.status === 200) {
-        setIsLoading(false);
-        return true;
-      } else {
-        console.log("Token invalid");
-        setToken("");
-      }
-    } catch (error) {
-      console.log(error);
-      setToken("");
-    }
-
-    setIsLoading(false);
-    return false;
   };
 
-  const login = async (email: string, password: string): Promise<boolean> => {
-    setIsLoading(true);
-    try {
-      const response = await axiosClient.post("/auth/login", {
-        email: email,
-        password: password,
-      });
-
-      const tempToken = response.data.token;
-      if (tempToken) {
-        setToken(tempToken);
-        setIsLoading(false);
-        return true;
-      } else {
-        console.log("No token received");
-        setToken("");
-      }
-    } catch (error) {
-      console.log(error);
-      setToken("");
-    }
-
-    setIsLoading(false);
-    return false;
-  };
-
-  const signup = async (
-    email: string,
-    password: string,
-    name: string,
-  ): Promise<boolean> => {
-    setIsLoading(true);
-    try {
-      const response = await axiosClient.post("/user/signup", {
-        email: email,
-        name: name,
-        password: password,
-      });
-
-      if (response.status === 200) {
-        setIsLoading(false);
-        setToken(response.data.token);
-        return true;
-      } else {
-        console.log("Signup failed");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-
-    setIsLoading(false);
-    return false;
-  };
-
-  const signout = () => {
-    setToken("");
-  };
+  const contextValue = useMemo(
+    () => ({
+      signIn,
+      signOut,
+      verifyToken,
+      token,
+    }),
+    [signIn, signOut, token],
+  );
 
   return (
-    <AuthContext.Provider
-      {...props}
-      value={{
-        token,
-        login,
-        verifySession,
-        signout,
-        isLoading,
-        signup,
-        axiosClient,
-      }}
-    />
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 };
 
-export { AuthProvider, useAuth };
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+
+  return context;
+};
+
+export default AuthProvider;
