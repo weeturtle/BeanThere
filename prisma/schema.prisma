@@ -1,0 +1,114 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id    String @id @default(cuid())
+  email String @unique
+  name  String
+
+  Friends             Friends[]             @relation(name: "user_friends")
+  FriendUserFriends   Friends[]             @relation(name: "friend_user_friends")
+  Community_Users     Community_Users[]
+  Starred_Cafes       Starred_Cafes[]
+  Reviews             Reviews[]
+  Tagged_User_Reviews Tagged_User_Reviews[]
+}
+
+model Friends {
+  id             String @id @default(cuid())
+  user_id        String
+  friend_user_id String
+
+  User        Users @relation(name: "user_friends", fields: [user_id], references: [id], onDelete: Cascade)
+  Friend_User Users @relation(name: "friend_user_friends", fields: [friend_user_id], references: [id], onDelete: Cascade)
+
+  @@unique([user_id, friend_user_id])
+}
+
+model Communities {
+  id          String            @id @default(cuid())
+  name        String
+  description String
+  users       Community_Users[]
+}
+
+model Community_Users {
+  community_id String
+  user_id      String
+
+  Community Communities @relation(fields: [community_id], references: [id], onDelete: Cascade)
+  User      Users       @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@id([community_id, user_id])
+}
+
+model Cafes {
+  id          String @id @default(cuid())
+  name        String
+  description String
+  address     String @unique
+  city        String
+
+  Starred_Cafes Starred_Cafes[]
+  Reviews       Reviews[]
+  Photos        Photos[]
+}
+
+model Starred_Cafes {
+  user_id String
+  cafe_id String
+
+  created_at DateTime @default(now())
+
+  User Users @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  Cafe Cafes @relation(fields: [cafe_id], references: [id])
+
+  @@id([user_id, cafe_id])
+}
+
+model Reviews {
+  id      String   @id @default(cuid())
+  user_id String
+  cafe_id String
+  rating  Int
+  review  String
+  drink   String
+  time    DateTime @default(now())
+
+  User                Users                 @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  Cafe                Cafes                 @relation(fields: [cafe_id], references: [id])
+  Photos              Photos[]
+  Tagged_User_Reviews Tagged_User_Reviews[]
+}
+
+model Photos {
+  id        String @id @default(cuid())
+  cafe_id   String
+  review_id String
+  key       String
+
+  Cafe   Cafes   @relation(fields: [cafe_id], references: [id])
+  Review Reviews @relation(fields: [review_id], references: [id], onDelete: Cascade)
+}
+
+model Tagged_User_Reviews {
+  user_id   String
+  review_id String
+
+  User   Users   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  Review Reviews @relation(fields: [review_id], references: [id])
+
+  @@id([user_id, review_id])
+}

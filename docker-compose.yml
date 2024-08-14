@@ -1,0 +1,20 @@
+services:
+  server-db:
+    image: postgres:16
+    ports:
+      - "5432:5432"
+    user: postgres
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    restart: always
+
+  server-api:
+    build: .
+    ports:
+      - "4000:4000"
+    depends_on:
+      - server-db
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true

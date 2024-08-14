@@ -18,3 +18,7 @@ web-build/
 
 expo-env.d.ts
 # @end expo-cli
+=======
+node_modules
+# Keep environment variables out of version control
+.env
