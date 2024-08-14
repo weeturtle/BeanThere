@@ -1,0 +1,39 @@
+services:
+  auth-api:
+    extends:
+      file: auth/docker-compose.yml
+      service: auth-api
+    networks:
+      - innerNetwork
+
+  auth-db:
+    extends:
+      file: auth/docker-compose.yml
+      service: auth-db
+    networks:
+      - innerNetwork
+    volumes:
+      - auth-data:/var/lib/postgresql/data
+
+  server-api:
+    extends:
+      file: server/docker-compose.yml
+      service: server-api
+    networks:
+      - innerNetwork
+
+  server-db:
+    extends:
+      file: server/docker-compose.yml
+      service: server-db
+    networks:
+      - innerNetwork
+    volumes:
+      - server-data:/var/lib/postgresql/data
+
+volumes:
+  auth-data:
+  server-data:
+
+networks:
+  innerNetwork:
