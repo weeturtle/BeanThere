@@ -33,7 +33,7 @@ const FriendsView = () => {
   return (
     <View>
       {data.user.Friends.map(({ id, name }) => (
-        <Link href={`/users/${id}`}>
+        <Link key={id} href={`/profile/${id}`}>
           <Text>{name}</Text>
         </Link>
       ))}

@@ -31,9 +31,13 @@ const Reviews = () => {
     return <Text>Error</Text>;
   }
 
+  return <ReviewList reviews={data.reviews} />;
+};
+
+export const ReviewList = ({ reviews }: { reviews: IReview[] }) => {
   return (
     <View>
-      {data.reviews.map((review) => (
+      {reviews.map((review) => (
         <Review key={review.id} {...review} />
       ))}
     </View>
