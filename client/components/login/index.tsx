@@ -1,8 +1,8 @@
+import React from "react";
 import { LOGIN } from "@/constants/mutations/auth";
 import { useMutation } from "@apollo/client";
 import { router } from "expo-router";
 import LoginView from "./Login";
-import React from "react";
 import { useAuth } from "@/hooks/useAuth";
 
 interface ILoginRequest {

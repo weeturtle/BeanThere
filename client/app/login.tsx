@@ -1,17 +1,20 @@
 import Login from "@/components/login";
-import { Link } from "expo-router";
 import React from "react";
-import { Text, View } from "react-native";
+import { View, StyleSheet } from "react-native";
 
 const LoginPage = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Login />
-      <Link href="/signup">
-        <Text>Register</Text>
-      </Link>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    height: "60%",
+    width: "100%",
+  },
+});
 
 export default LoginPage;
