@@ -14,6 +14,7 @@ export interface IReview {
   rating: number;
   review: string;
   Cafe: {
+    id: string;
     name: string;
     address: string;
   };

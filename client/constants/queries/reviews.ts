@@ -12,6 +12,7 @@ export const DASHBOARD_REVIEWS = gql`
       rating
       review
       Cafe {
+        id
         name
         address
       }

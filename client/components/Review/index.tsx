@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { IReview } from "./reviews";
 import formatTime from "./formatTime";
+import { Link } from "expo-router";
 
 const Review = (review: IReview) => {
   const date = new Date((review.time as number) * 1000);
@@ -27,10 +28,12 @@ const Review = (review: IReview) => {
             uri: "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/flat-white-3402c4f.jpg",
           }}
         />
-        <View>
-          <Text>{review.Cafe.name}</Text>
-          <Text>{review.Cafe.address}</Text>
-        </View>
+        <Link href={`/cafes/${review.Cafe.id}`}>
+          <View style={styles.cafeInfo}>
+            <Text>{review.Cafe.name}</Text>
+            <Text>{review.Cafe.address}</Text>
+          </View>
+        </Link>
       </View>
     </View>
   );
@@ -52,6 +55,12 @@ const styles = StyleSheet.create({
   rightView: {
     flexDirection: "column",
     alignItems: "flex-end",
+  },
+
+  cafeInfo: {
+    flex: 2,
+    flexDirection: "column",
+    justifyContent: "space-between",
   },
 
   image: {
