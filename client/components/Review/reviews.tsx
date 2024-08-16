@@ -1,7 +1,7 @@
 import { DASHBOARD_REVIEWS } from "@/constants/queries/reviews";
 import { useSuspenseQuery } from "@apollo/client";
 import React from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, FlatList, SafeAreaView, Text, View } from "react-native";
 import Review from ".";
 
 export interface IReview {
@@ -31,17 +31,37 @@ const Reviews = () => {
     return <Text>Error</Text>;
   }
 
-  return <ReviewList reviews={data.reviews} />;
+  return (
+    <SafeAreaView style={styles.container}>
+      <ReviewList reviews={data.reviews} />
+    </SafeAreaView>
+  );
 };
 
 export const ReviewList = ({ reviews }: { reviews: IReview[] }) => {
   return (
-    <View>
-      {reviews.map((review) => (
-        <Review key={review.id} {...review} />
-      ))}
-    </View>
+    <FlatList
+      data={reviews}
+      renderItem={({ item }) => (
+        <Review
+          drink={item.drink}
+          rating={item.rating}
+          review={item.review}
+          Cafe={item.Cafe}
+          User={item.User}
+          time={item.time}
+          id={item.id}
+        />
+      )}
+      keyExtractor={(item) => item.id}
+    />
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 export default Reviews;

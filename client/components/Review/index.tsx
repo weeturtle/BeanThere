@@ -5,41 +5,46 @@ import formatTime from "./formatTime";
 import { Link } from "expo-router";
 
 const Review = (review: IReview) => {
-  const date = new Date((review.time as number) * 1000);
+  const date = new Date((review.time as number) * 1);
   const formattedTime = formatTime(date);
 
   return (
-    <View style={styles.container}>
-      <View>
-        <View>
-          <Text>{review.User.name}</Text>
-          <Text>{formattedTime}</Text>
-        </View>
-        <View>
-          <Text>{review.rating}</Text>
-          <Text>{review.drink}</Text>
-          <Text>{review.review}</Text>
-        </View>
-      </View>
-      <View style={styles.rightView}>
-        <Image
-          style={styles.image}
-          source={{
-            uri: "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/flat-white-3402c4f.jpg",
-          }}
-        />
-        <Link href={`/cafes/${review.Cafe.id}`}>
-          <View style={styles.cafeInfo}>
-            <Text>{review.Cafe.name}</Text>
-            <Text>{review.Cafe.address}</Text>
+    <View style={styles.outerContainer}>
+      <View style={styles.container}>
+        <View style={styles.leftView}>
+          <View>
+            <Text>{review.User.name}</Text>
+            <Text>{formattedTime}</Text>
           </View>
-        </Link>
+          <View>
+            <Text>{review.rating}</Text>
+            <Text>{review.drink}</Text>
+            <Text>{review.review}</Text>
+          </View>
+        </View>
+        <View style={styles.rightView}>
+          <Image
+            style={styles.image}
+            source={{
+              uri: "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/flat-white-3402c4f.jpg",
+            }}
+          />
+          <Link href={`/cafes/${review.Cafe.id}`}>
+            <View style={styles.cafeInfo}>
+              <Text>{review.Cafe.name}</Text>
+              <Text>{review.Cafe.address}</Text>
+            </View>
+          </Link>
+        </View>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  outerContainer: {
+    height: 240,
+  },
   container: {
     width: "100%",
     borderColor: "#000",
@@ -50,8 +55,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
 
-  // Align the right view to the right
-  // of the parent view
+  leftView: {
+    maxWidth: "50%",
+  },
+
   rightView: {
     flexDirection: "column",
     alignItems: "flex-end",

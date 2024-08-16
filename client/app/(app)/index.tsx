@@ -5,7 +5,7 @@ import Reviews from "@/components/Review/reviews";
 
 const App = () => {
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <Link href="/review">
         <Text>Add Reviews</Text>
       </Link>

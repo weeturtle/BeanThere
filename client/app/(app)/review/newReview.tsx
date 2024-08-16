@@ -1,8 +1,22 @@
-import { useAuth } from "@/hooks/useAuth";
 import React, { useState } from "react";
 import { View, TextInput, Pressable, Text } from "react-native";
-import axios from "axios";
 import { Redirect } from "expo-router";
+import { useMutation } from "@apollo/client";
+import { ADDREVIEW } from "@/constants/mutations/review";
+
+interface ReviewResponse {
+  review: {
+    id: string;
+  };
+}
+
+interface ReviewRequest {
+  review: string;
+  rating: string;
+  cafe_id: string;
+  drink: string;
+  time: string;
+}
 
 const NewReview = () => {
   const [review, setReview] = useState("");
@@ -10,22 +24,33 @@ const NewReview = () => {
   const [cafeId, setCafeId] = useState("");
   const [drink, setDrink] = useState("");
 
-  const { axiosClient } = useAuth();
+  const [addReview, { error, loading }] = useMutation<
+    ReviewResponse,
+    ReviewRequest
+  >(ADDREVIEW, {
+    onCompleted: (data) => {
+      console.log(data);
+      Redirect({ href: "/" });
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
-  const addReview = async () => {
-    const response = await axiosClient.post("/review", {
-      review,
-      rating,
-      cafe_id: cafeId,
-      drink,
+  if (loading) {
+    return <Text>Loading...</Text>;
+  }
+
+  const postReview = () => {
+    addReview({
+      variables: {
+        review,
+        rating,
+        cafe_id: cafeId,
+        drink,
+        time: new Date().toISOString(),
+      },
     });
-
-    if (response.status === 200) {
-      console.log("Review added");
-      return <Redirect href="/" />;
-    }
-
-    console.log("Review not added");
   };
 
   return (
@@ -46,7 +71,7 @@ const NewReview = () => {
         onChangeText={(text) => setCafeId(text)}
       />
       <TextInput placeholder="Drink" onChangeText={(text) => setDrink(text)} />
-      <Pressable onPress={addReview}>
+      <Pressable onPress={postReview}>
         <Text>Submit</Text>
       </Pressable>
     </View>

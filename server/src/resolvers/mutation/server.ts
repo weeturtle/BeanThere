@@ -41,7 +41,7 @@ const serverMutationResolvers = {
         cafe_id,
         user_id: authResponse.user_id,
         drink,
-        time,
+        time: new Date(time),
       },
     });
   },
