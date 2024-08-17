@@ -61,9 +61,21 @@ model Cafes {
   address     String @unique
   city        String
 
+  Opening_Times Opening_Times[]
   Starred_Cafes Starred_Cafes[]
   Reviews       Reviews[]
   Photos        Photos[]
+}
+
+model Opening_Times {
+  id      String @id @default(cuid())
+  cafe_id String
+  day     String
+  time    String
+
+  Cafe Cafes @relation(fields: [cafe_id], references: [id], onDelete: Cascade)
+
+  @@unique([cafe_id, day])
 }
 
 model Starred_Cafes {

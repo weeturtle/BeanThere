@@ -11,11 +11,17 @@ interface INewReview {
   time: string;
 }
 
+interface IOpeningTimes {
+  day: string;
+  time: string;
+}
+
 interface INewCafe {
   name: string;
   description: string;
   address: string;
   city: string;
+  opening_times: IOpeningTimes[];
 }
 
 interface INewFriend {
@@ -47,7 +53,9 @@ const serverMutationResolvers = {
   },
   add_cafe: async (
     _: any,
-    { input: { name, address, city, description } }: { input: INewCafe },
+    {
+      input: { name, address, city, description, opening_times },
+    }: { input: INewCafe },
   ): Promise<Cafe | null> => {
     return prisma.cafes.create({
       data: {
@@ -55,6 +63,9 @@ const serverMutationResolvers = {
         address,
         city,
         description,
+        Opening_Times: {
+          create: opening_times,
+        },
       },
     });
   },
@@ -87,6 +98,20 @@ const serverMutationResolvers = {
     });
 
     return user;
+  },
+
+  remove_cafe: async (_: any, { id }: { id: string }): Promise<boolean> => {
+    try {
+      await prisma.cafes.delete({
+        where: {
+          id,
+        },
+      });
+      return true;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
   },
 };
 

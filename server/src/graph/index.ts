@@ -23,7 +23,17 @@ export const typeDefs = gql`
     address: String!
     city: String!
 
+    OpeningTimes: [OpeningTimes]!
     Reviews: [Review]!
+  }
+
+  type OpeningTimes {
+    id: ID!
+    cafe_id: ID!
+    day: String!
+    time: String!
+
+    Cafe: Cafe!
   }
 
   type Review {
@@ -55,11 +65,17 @@ export const typeDefs = gql`
     email: String!
   }
 
+  input OpeningTimesInput {
+    day: String!
+    time: String!
+  }
+
   input NewCafeRequest {
     name: String!
     description: String!
     address: String!
     city: String!
+    opening_times: [OpeningTimesInput]!
   }
 
   input NewReviewRequest {
@@ -107,6 +123,8 @@ export const typeDefs = gql`
     add_review(input: NewReviewRequest!): Review
     add_cafe(input: NewCafeRequest!): Cafe
     add_friend(input: NewFriendRequest!): User
+
+    remove_cafe(id: ID!): Boolean
   }
 `;
 

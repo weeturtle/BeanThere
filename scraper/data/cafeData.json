@@ -1,0 +1,613 @@
+[
+  {
+    "position": 1,
+    "title": "Colonna & Small's",
+    "placeId": "ChIJMUKdQBSBcUgRvz8IiqG_Fm8",
+    "dataId": "0x48718114409d4231:0x6f16bfa18a083fbf",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipMjyjt3LORPhbgek2IIqy5OU3ngZH7JIMdq3u1F=w92-h92-k-no",
+    "phone": "+44 7766 808067",
+    "address": "6 Chapel Row, Bath, BA1 1HT, United Kingdom",
+    "website": "https://colonnacoffee.com/",
+    "description": "Coffee shop with a bespoke bean menu. Contemporary cafe with minimalist decor offering specialty coffees alongside various cakes.. . t. t",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "8:30 AM–5:30 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "9 AM–5:30 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "10 AM–4 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "8:30 AM–5:30 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "8:30 AM–5:30 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "8:30 AM–5:30 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "8:30 AM–5:30 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.7,
+    "reviews": 1201,
+    "type": "Coffee shop",
+    "gpsCoordinates": {
+      "latitude": 51.382744599999995,
+      "longitude": -2.3644114
+    },
+    "serviceOptions": [
+      "Outdoor seating",
+      "Onsite services",
+      "Takeout",
+      "Dine-in",
+      "Delivery"
+    ]
+  },
+  {
+    "position": 2,
+    "title": "The Colombian Company",
+    "placeId": "ChIJe6k9PtCAcUgRPZiMptFK1oA",
+    "dataId": "0x487180d03e3da97b:0x80d64ad1a68c983d",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipNRlmFi6E27ZACnKFORHZSN4GWqpVhsUQaLwG-l=w122-h92-k-no",
+    "address": "6 Abbeygate St, Bath, BA1 1NP, United Kingdom",
+    "website": "http://www.thecolombiancompany.com/",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "8 AM–5 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "8 AM–5:30 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "9 AM–5 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "8 AM–5 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "8 AM–5 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "8 AM–5 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "8 AM–5 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.7,
+    "reviews": 585,
+    "type": "Coffee shop",
+    "gpsCoordinates": {
+      "latitude": 51.380291899999996,
+      "longitude": -2.3589420999999997
+    },
+    "serviceOptions": [
+      "Outdoor seating",
+      "Onsite services",
+      "Takeout",
+      "Dine-in",
+      "Delivery"
+    ]
+  },
+  {
+    "position": 3,
+    "title": "Good Day Cafe",
+    "placeId": "ChIJxe4H1ymBcUgRfl150_HDAdc",
+    "dataId": "0x48718129d707eec5:0xd701c3f1d3795d7e",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipOIJNKBhhlfe8vUG-yWwLmTBrMeCbl64ym3JVE=w137-h92-k-no",
+    "phone": "+44 1225 684284",
+    "address": "12 Upper Borough Walls, Bath, BA1 1RH, United Kingdom",
+    "website": "http://www.gooddaycafe.co.uk/",
+    "description": "Relaxed outlet for pastries & coffee. Brunch plates & baked treats presented in an easygoing coffee shop with plants & colourful walls.. . t. t",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "9 AM–5 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "9 AM–6 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "9 AM–5 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "9 AM–5 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "9 AM–5 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "9 AM–5 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "9 AM–5 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.5,
+    "reviews": 632,
+    "type": "Cafe",
+    "gpsCoordinates": { "latitude": 51.3827218, "longitude": -2.3604003 },
+    "serviceOptions": ["Identifies as women-owned"]
+  },
+  {
+    "position": 4,
+    "title": "Society Café",
+    "placeId": "ChIJEWLxwBOBcUgR8DzHbzX18_o",
+    "dataId": "0x48718113c0f16211:0xfaf3f5356fc73cf0",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipNRDQ1l6gBTCnVKUTXhG68o7adMG406ahaM0NVY=w80-h106-k-no",
+    "address": "19 High St, The Corridor, Bath BA1 5AJ, United Kingdom",
+    "website": "http://www.society-cafe.com/",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "8 AM–5 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "9 AM–6 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "9 AM–6 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "8 AM–5 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "8 AM–5 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "8 AM–5 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "8 AM–5 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.6,
+    "reviews": 412,
+    "type": "Coffee shop",
+    "gpsCoordinates": {
+      "latitude": 51.3822513,
+      "longitude": -2.3592535999999997
+    },
+    "serviceOptions": ["Outdoor seating", "Takeout", "Delivery", "Dine-in"]
+  },
+  {
+    "position": 5,
+    "title": "Mokoko Coffee",
+    "placeId": "ChIJxY5_3hOBcUgRShu-AYE_icQ",
+    "dataId": "0x48718113de7f8ec5:0xc4893f8101be1b4a",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipOqMXSf7DAX7OgYJKGjPVAKHAvg68AZFEqD9B-u=w163-h92-k-no",
+    "address": "6 Abbey Churchyard, Bath, BA1 1LY, United Kingdom",
+    "website": "https://www.mokokocoffee.com/",
+    "description": "Stylish hangout in a historic setting. Independent cafe with outside seating in a timeless spot, with specialty drinks, cakes and lunches.. . t. t",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "9 AM–5 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "9 AM–6 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "9 AM–5 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "9 AM–5 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "9 AM–5 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "9 AM–5 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "9 AM–5 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.4,
+    "reviews": 486,
+    "type": "Coffee shop",
+    "gpsCoordinates": {
+      "latitude": 51.3813448,
+      "longitude": -2.3602149999999997
+    },
+    "serviceOptions": ["Outdoor seating", "Takeout", "Dine-in", "Delivery"]
+  },
+  {
+    "position": 6,
+    "title": "Cortado Café",
+    "placeId": "ChIJJzAnCO2BcUgRQUjSJGAnWyo",
+    "dataId": "0x487181ed08273027:0x2a5b276024d24841",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipO5WT5NOBgK1q3Y3w2ES_b8Ds6QcVtu6KRByim9=w122-h92-k-no",
+    "address": "7 Bridge St, Bath, BA2 4AS, United Kingdom",
+    "website": "http://www.cortadobath.co.uk/",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "8 AM–4 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "9 AM–5 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "9 AM–4 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "8 AM–4 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "8 AM–4 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "8 AM–4 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "8 AM–4 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.8,
+    "reviews": 307,
+    "type": "Cafe",
+    "gpsCoordinates": { "latitude": 51.3829427, "longitude": -2.3586391 },
+    "serviceOptions": [
+      "Outdoor seating",
+      "Onsite services",
+      "Takeout",
+      "Dine-in",
+      "Delivery"
+    ]
+  },
+  {
+    "position": 7,
+    "title": "The Green Bird Cafe",
+    "placeId": "ChIJcR8t12qBcUgR1C-sQf5eXE8",
+    "dataId": "0x4871816ad72d1f71:0x4f5c5efe41ac2fd4",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipO0ZOvPTitFPgZbhuWs1AsAVDwi1XE6WooH7wiD=w138-h92-k-no",
+    "phone": "+44 1225 487846",
+    "address": "11 Margaret's Buildings, Bath, BA1 2LP, United Kingdom",
+    "website": "http://www.greenbirdcafe.co.uk/",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "9 AM–4 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "9 AM–5 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "Closed", "date": "2024-08-18" },
+        { "day": "Monday", "time": "9 AM–4 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "9 AM–4 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "9 AM–4 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "9 AM–4 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.7,
+    "reviews": 671,
+    "type": "Cafe",
+    "gpsCoordinates": {
+      "latitude": 51.386824399999995,
+      "longitude": -2.3658881
+    },
+    "serviceOptions": ["Outdoor seating", "Takeout", "Dine-in", "Delivery"]
+  },
+  {
+    "position": 8,
+    "title": "MK Coffee",
+    "placeId": "ChIJY4JJ5i6BcUgRNCpxa-fafng",
+    "dataId": "0x4871812ee6498263:0x787edae76b712a34",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipNV9oBjOZCUOjyAMzZj_Yj-mmplwOqY8ojxI_gQ=w137-h92-k-no",
+    "address": "3 New Bond St, Bath, BA1 1BL, United Kingdom",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "8:30 AM–5 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "9 AM–5:30 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "9 AM–5 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "8:30 AM–5 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "8:30 AM–5 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "8:30 AM–5 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "8:30 AM–5 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.6,
+    "reviews": 226,
+    "type": "Coffee shop",
+    "gpsCoordinates": { "latitude": 51.3831694, "longitude": -2.3608792 },
+    "serviceOptions": ["Outdoor seating", "Takeout", "Dine-in", "Delivery"]
+  },
+  {
+    "position": 9,
+    "title": "The Bath Coffee Co",
+    "placeId": "ChIJbWiqGBSBcUgRgrHPpgvcWyg",
+    "dataId": "0x4871811418aa686d:0x285bdc0ba6cfb182",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipMcu3h2G40fPT6GQczMDs3PK1KP5J6jVFTRTfx0=w116-h92-k-no",
+    "address": "14 Kingsmead Square, Bath, BA1 2AD, United Kingdom",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "8 AM–6 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "8 AM–6 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "8 AM–6 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "8 AM–6 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "8 AM–6 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "8 AM–6 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "8 AM–6 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.7,
+    "reviews": 282,
+    "type": "Coffee store",
+    "gpsCoordinates": { "latitude": 51.381347, "longitude": -2.3635205 },
+    "serviceOptions": ["Takeout", "Delivery", "Same-day delivery"]
+  },
+  {
+    "position": 10,
+    "title": "Society Café",
+    "placeId": "ChIJ07VxHhSBcUgRXvn8dzr4y28",
+    "dataId": "0x487181141e71b5d3:0x6fcbf83a77fcf95e",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipNn5Ey5fC79V-TH0XKkJCMUsb5rnGKo0bd85LmA=w138-h92-k-no",
+    "address": "5 Kingsmead Square, Bath, BA1 2AB, United Kingdom",
+    "website": "http://www.society-cafe.com/",
+    "description": "Arty, airy, modern cafe with cinema room. Progressive, bright cafe with modern artworks, offering artisan coffee, baking, plus a cinema room.. . t. t",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "7:30 AM–5:30 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "8 AM–6 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "9 AM–6 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "7:30 AM–5:30 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "7:30 AM–5:30 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "7:30 AM–5:30 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "7:30 AM–5:30 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.5,
+    "reviews": 879,
+    "type": "Coffee shop",
+    "gpsCoordinates": {
+      "latitude": 51.3810441,
+      "longitude": -2.3630383999999998
+    },
+    "serviceOptions": [
+      "Outdoor seating",
+      "Onsite services",
+      "Takeout",
+      "Dine-in",
+      "Delivery"
+    ]
+  },
+  {
+    "position": 11,
+    "title": "Cafe Lucca",
+    "placeId": "ChIJc3JrWROBcUgRnEIu46EFqdo",
+    "dataId": "0x48718113596b7273:0xdaa905a1e32e429c",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipMS0fM0XQHPLNKaY5ZOnDX96DLHTE7aCaIILzEa=w123-h92-k-no",
+    "phone": "+44 1225 333844",
+    "address": "1-2 Bartlett St, Bath, BA1 2QZ, United Kingdom",
+    "website": "http://www.cafelucca.co.uk/",
+    "description": "Chic cafe-bakeshop with a terrace. Hip eatery & cake bakery inside a shop with modern daytime fare & afternoon tea plus a terrace.. . t. t",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "9 AM–5 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "9 AM–5 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "10 AM–4 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "9 AM–5 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "9 AM–5 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "9 AM–5 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "9 AM–5 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.5,
+    "reviews": 527,
+    "type": "Coffee shop",
+    "gpsCoordinates": {
+      "latitude": 51.3856043,
+      "longitude": -2.3620357999999997
+    },
+    "serviceOptions": [
+      "Outdoor seating",
+      "Onsite services",
+      "Takeout",
+      "Dine-in",
+      "Delivery"
+    ]
+  },
+  {
+    "position": 12,
+    "title": "Lulu Coffee",
+    "placeId": "ChIJDRYHTRGBcUgRpvhylhW7VzY",
+    "dataId": "0x487181114d07160d:0x3657bb159672f8a6",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipOix3p1_yPq5Yd04sLri0c6-l6Z6rGNL4jJAFhM=w139-h92-k-no",
+    "address": "1 Hot Bath St, Bath, BA1 1SJ, United Kingdom",
+    "description": "Warm, casual stop for tea & sandwiches. Low-key corner cafe serving an array of breakfast & lunch staples plus coffee drinks & tea.. . t. t",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "8 AM–6 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "8 AM–6 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "9 AM–5 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "8 AM–6 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "8 AM–6 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "8 AM–6 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "8 AM–6 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.5,
+    "reviews": 334,
+    "type": "Coffee shop",
+    "gpsCoordinates": { "latitude": 51.38019, "longitude": -2.361598 },
+    "serviceOptions": [
+      "Outdoor seating",
+      "Onsite services",
+      "Takeout",
+      "Dine-in",
+      "Delivery"
+    ]
+  },
+  {
+    "position": 13,
+    "title": "Cafe au Lait",
+    "placeId": "ChIJszRXSBCBcUgR4tOHqWZA2P0",
+    "dataId": "0x48718110485734b3:0xfdd84066a987d3e2",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipPjtoDjHTN1QvpXOWSelfvJZeFaRiTCDhyGNvH4=w80-h106-k-no",
+    "phone": "+44 1225 571808",
+    "address": "12-14 Dorchester St, Bath, BA1 1SS, United Kingdom",
+    "website": "http://www.cafeaulait.co.uk/",
+    "description": "Snug cafe for breakfast & all-day brunch. Intimate, rustic hub cooking breakfast, lunch & all-day brunch dishes such as pancakes & toasties.. . t. t",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "8:30 AM–5 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "8:30 AM–5 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "8:30 AM–5 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "8:30 AM–5 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "8:30 AM–5 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "8:30 AM–5 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "8:30 AM–5 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.1,
+    "reviews": 461,
+    "type": "Coffee shop",
+    "gpsCoordinates": { "latitude": 51.3780194, "longitude": -2.3573417 },
+    "serviceOptions": ["Outdoor seating", "Takeout", "Dine-in", "Delivery"]
+  },
+  {
+    "position": 14,
+    "title": "Picnic Coffee",
+    "placeId": "ChIJiT7wEBOBcUgRXFVNOoNlkRQ",
+    "dataId": "0x4871811310f03e89:0x149165833a4d555c",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipMdaiVTkaN4vf4u_jl4KueeJYvGfNDSti5exKnT=w163-h92-k-no",
+    "phone": "+44 1225 330128",
+    "address": "9 Saracen St, Bath, BA1 5BR, United Kingdom",
+    "website": "http://www.picniccoffee.co.uk/",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "8 AM–9 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "8:30 AM–5 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "9 AM–4 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "8 AM–4:30 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "8 AM–4:30 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "8 AM–4:30 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "8 AM–4:30 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.5,
+    "reviews": 160,
+    "type": "Coffee shop",
+    "gpsCoordinates": { "latitude": 51.3845728, "longitude": -2.3597694 },
+    "serviceOptions": ["Outdoor seating", "Takeout", "Dine-in", "Delivery"]
+  },
+  {
+    "position": 15,
+    "title": "Pulteney Bridge Coffee Shop",
+    "placeId": "ChIJYxGuRBKBcUgRxq9GqIqjoA8",
+    "dataId": "0x4871811244ae1163:0xfa0a38aa846afc6",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipNX-fxiKUtEDc06KBStfjJUOiqzog-CcS5j8R5-=w122-h92-k-no",
+    "phone": "+44 1225 477233",
+    "address": "16 Pulteney Bridge, Bath, BA2 4AY, United Kingdom",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "10:30 AM–5 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "10:30 AM–5 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "10:30 AM–5 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "Closed", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "10:30 AM–5 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "10:30 AM–5 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "10:30 AM–5 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.2,
+    "reviews": 482,
+    "type": "Coffee shop",
+    "gpsCoordinates": { "latitude": 51.3829383, "longitude": -2.3580275 },
+    "serviceOptions": ["Onsite services", "Takeout", "Dine-in", "Delivery"]
+  },
+  {
+    "position": 16,
+    "title": "Coffee#1 Bath City Centre",
+    "placeId": "ChIJV95r9GqBcUgRyJNwCbrSD64",
+    "dataId": "0x4871816af46bde57:0xae0fd2ba097093c8",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipNQK3VtOKe2Azdc9IhASlbQI9ABeheGlzWH5w_C=w122-h92-k-no",
+    "phone": "+44 1225 789442",
+    "address": "Unit 1 Ground floor, Rosewell Court, James St W, Bath, BA1 2AG, United Kingdom",
+    "website": "https://www.coffee1.co.uk/locations/bath-city-centre/",
+    "description": "Gourmet global coffee, juices & snacks. Local chain serving up gourmet global coffees, juices & snacks in a relaxed space.. . t. t",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "7:30 AM–6 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "8 AM–6 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "9 AM–5 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "7:30 AM–6 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "7:30 AM–6 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "7:30 AM–6 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "7:30 AM–6 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.4,
+    "reviews": 288,
+    "type": "Coffee shop",
+    "gpsCoordinates": { "latitude": 51.381099, "longitude": -2.3643153 },
+    "serviceOptions": ["Delivery", "Onsite services", "Takeout", "Dine-in"]
+  },
+  {
+    "position": 17,
+    "title": "Coffever",
+    "placeId": "ChIJv3UE5AqBcUgRkO9pqk4rcUg",
+    "dataId": "0x4871810ae40475bf:0x48712b4eaa69ef90",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipPjRBdD4wfD0e27F0dafoSnFFvHbbDNIgGR-Ln1=w122-h92-k-no",
+    "address": "14 Northumberland Pl, Bath, BA1 5AR, United Kingdom",
+    "website": "http://coffever.co.uk/",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "8 AM–4 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "9 AM–4 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "9 AM–4 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "8 AM–4 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "Closed", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "Closed", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "8 AM–4 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.9,
+    "reviews": 115,
+    "type": "Coffee shop",
+    "gpsCoordinates": { "latitude": 51.3823745, "longitude": -2.3599186 },
+    "serviceOptions": [
+      "Outdoor seating",
+      "Onsite services",
+      "Takeout",
+      "Dine-in",
+      "Delivery"
+    ]
+  },
+  {
+    "position": 18,
+    "title": "Wild Cafe",
+    "placeId": "ChIJ7y6kiROBcUgRR-QC2MbaXxg",
+    "dataId": "0x4871811389a42eef:0x185fdac6d802e447",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipNRmOZ8V82W-Zx5DEt0-ECQ_YfZpYDj9AgaEmvc=w122-h92-k-no",
+    "address": "10a Queen St, Bath, BA1 1HE, United Kingdom",
+    "website": "http://www.wildcafe.co.uk/",
+    "description": "Sandwiches, snacks & freshly baked cakes. Corner eatery with wood-topped tables plus food made from local produce and organic ingredients.. . t. t",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "8 AM–3:30 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "8 AM–5 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "8 AM–3:30 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "8 AM–3:30 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "8 AM–3:30 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "8 AM–3:30 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "8 AM–3:30 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.2,
+    "reviews": 847,
+    "type": "Cafe",
+    "gpsCoordinates": {
+      "latitude": 51.382848499999994,
+      "longitude": -2.362018
+    },
+    "serviceOptions": ["Takeout", "Dine-in", "Delivery"]
+  },
+  {
+    "position": 19,
+    "title": "The Courtyard Cafe",
+    "placeId": "ChIJByrSLg6BcUgRLnes00J9kUQ",
+    "dataId": "0x4871810e2ed22a07:0x44917d42d3ac772e",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipOwJFqUi6N9lz1IJnem-mqaJVBbXYUCobbiyZp3=w137-h92-k-no",
+    "address": "3 Lilliput Court, Bath, BA1 1ND, United Kingdom",
+    "website": "http://courtyardbath.co.uk/",
+    "description": "Cosy, casual stop for cafe fare. Small, casual cafe offering a homey, all-day menu plus coffee drinks & outdoor seating.. . t. t",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "10 AM–5 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "9 AM–5 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "10 AM–5 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "10 AM–5 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "10 AM–5 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "10 AM–5 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "10 AM–5 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.5,
+    "reviews": 370,
+    "type": "Coffee shop",
+    "gpsCoordinates": {
+      "latitude": 51.380603799999996,
+      "longitude": -2.358428
+    },
+    "serviceOptions": ["Outdoor seating", "Takeout", "Dine-in", "Delivery"]
+  },
+  {
+    "position": 20,
+    "title": "Rosarios",
+    "placeId": "ChIJQd5guBOBcUgR5GLnIbTU9zQ",
+    "dataId": "0x48718113b860de41:0x34f7d4b421e762e4",
+    "thumbnail": "https://lh5.googleusercontent.com/p/AF1QipNmk0WGFP0zw8jbj2ngsz2nA2sA_ToPg_e8rLC4=w80-h106-k-no",
+    "phone": "+44 1225 469590",
+    "address": "Rosarios Cafe, 18 Northumberland Pl, Bath BA1 5AR, United Kingdom",
+    "website": "http://www.rosarioscafe.co.uk/",
+    "description": "Italian-influenced coffee shop & cafe. Compact and welcoming coffee shop serving light meals influenced by the cuisine of Italy.. . t. t",
+    "workingHours": {
+      "timezone": "Europe/London",
+      "days": [
+        { "day": "Friday", "time": "8 AM–5 PM", "date": "2024-08-16" },
+        { "day": "Saturday", "time": "8 AM–5 PM", "date": "2024-08-17" },
+        { "day": "Sunday", "time": "10 AM–3 PM", "date": "2024-08-18" },
+        { "day": "Monday", "time": "8 AM–5 PM", "date": "2024-08-19" },
+        { "day": "Tuesday", "time": "8 AM–5 PM", "date": "2024-08-20" },
+        { "day": "Wednesday", "time": "8 AM–5 PM", "date": "2024-08-21" },
+        { "day": "Thursday", "time": "8 AM–5 PM", "date": "2024-08-22" }
+      ]
+    },
+    "rating": 4.6,
+    "reviews": 984,
+    "type": "Cafe",
+    "gpsCoordinates": { "latitude": 51.3823916, "longitude": -2.3595951 },
+    "serviceOptions": [
+      "Outdoor seating",
+      "Onsite services",
+      "Takeout",
+      "Dine-in",
+      "Delivery"
+    ]
+  }
+]

@@ -9,6 +9,13 @@ const cafeResolver = {
       },
     });
   },
+  OpeningTimes: async (cafe: Cafe) => {
+    return prisma.opening_Times.findMany({
+      where: {
+        cafe_id: cafe.id,
+      },
+    });
+  },
 };
 
 export default cafeResolver;
