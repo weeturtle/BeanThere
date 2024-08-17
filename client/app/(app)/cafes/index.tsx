@@ -1,31 +1,26 @@
 import React, { Suspense } from "react";
-import { Link } from "expo-router";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import Cafes from "@/components/cafes";
+import { Link } from "expo-router";
 
 const CafePage = () => {
   return (
-    <View>
-      <Text> Cafe Page </Text>
-      <Link href="/profile/starredCafes">
-        <Text>Starred Cafes</Text>
+    <View style={styles.container}>
+      <Link href="/(app)/cafes/newCafe">
+        <Text>New Cafe</Text>
       </Link>
-      {/*
-      <Pressable onPress={fetchCafes}>
-        <Text>Fetch Cafes</Text>
-      </Pressable>
-
-      {cafes.map((cafe) => (
-        <View key={cafe.name}>
-          <Text>{cafe.name}</Text>
-        </View>
-      ))}
-        */}
       <Suspense fallback={<Text>Loading...</Text>}>
         <Cafes />
       </Suspense>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+});
 
 export default CafePage;

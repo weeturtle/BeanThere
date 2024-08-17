@@ -1,7 +1,7 @@
 import React from "react";
 import { ALLCAFES } from "@/constants/queries/cafes";
 import { useSuspenseQuery } from "@apollo/client";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet, Image, FlatList } from "react-native";
 import { Link } from "expo-router";
 
 interface ICafe {
@@ -23,24 +23,64 @@ const Cafes = () => {
   }
 
   return (
-    <View>
-      {data.cafes.map((cafe) => (
-        <Cafe key={cafe.id} {...cafe} />
-      ))}
-    </View>
+    <FlatList
+      data={data?.cafes}
+      keyExtractor={(item) => item.id}
+      renderItem={({ item: cafe }) => <Cafe {...cafe} />}
+    />
   );
 };
 
 const Cafe = ({ name, city, address, id }: ICafe) => {
   return (
-    <View>
-      <Link href={`/cafes/${id}`}>
-        <Text>{name}</Text>
-      </Link>
-      <Text>{city}</Text>
-      <Text>{address}</Text>
-    </View>
+    <Link href={`/cafes/${id}`} style={styles.linkContainer}>
+      <View style={styles.cafeContainer}>
+        <Image
+          source={{
+            uri: "https://beanthere.at/2017/03/06/Review-Colonna-smalls-Bath/ColonnaAndSmalls-Interior2.jpg",
+          }}
+          style={styles.image}
+        />
+        <View>
+          <Text style={styles.title}>{name}</Text>
+          <Text style={styles.city}>{city}</Text>
+          <Text>{address}</Text>
+        </View>
+      </View>
+    </Link>
   );
 };
+
+const styles = StyleSheet.create({
+  linkContainer: {
+    width: "80%",
+    alignSelf: "center",
+  },
+  cafeContainer: {
+    width: "100%",
+    flexDirection: "row",
+    columnGap: 14,
+    flex: 2,
+    padding: 10,
+    margin: 10,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "black",
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+
+  city: {
+    fontSize: 14,
+    fontWeight: "600",
+  },
+
+  image: {
+    height: 100,
+    width: 100,
+  },
+});
 
 export default Cafes;
