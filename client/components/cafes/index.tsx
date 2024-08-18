@@ -41,9 +41,11 @@ const Cafe = ({ name, city, address, id }: ICafe) => {
           }}
           style={styles.image}
         />
-        <View>
-          <Text style={styles.title}>{name}</Text>
-          <Text style={styles.city}>{city}</Text>
+        <View style={styles.infoContainer}>
+          <View>
+            <Text style={styles.title}>{name}</Text>
+            <Text style={styles.city}>{city}</Text>
+          </View>
           <Text>{address}</Text>
         </View>
       </View>
@@ -67,6 +69,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
   },
+
+  infoContainer: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "space-between",
+  },
+
   title: {
     fontSize: 16,
     fontWeight: "bold",
@@ -75,6 +84,13 @@ const styles = StyleSheet.create({
   city: {
     fontSize: 14,
     fontWeight: "600",
+  },
+
+  address: {
+    fontSize: 14,
+    fontWeight: "400",
+    flexWrap: "wrap",
+    flex: 1,
   },
 
   image: {
