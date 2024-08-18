@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { IReview } from "./reviews";
 import formatTime from "./formatTime";
@@ -7,6 +7,7 @@ import { Link } from "expo-router";
 const Review = (review: IReview) => {
   const date = new Date((review.time as number) * 1);
   const formattedTime = formatTime(date);
+  const shortennedAddress = review.Cafe.address.split(",")[0];
 
   return (
     <View style={styles.outerContainer}>
@@ -32,7 +33,7 @@ const Review = (review: IReview) => {
           <Link href={`/cafes/${review.Cafe.id}`}>
             <View style={styles.cafeInfo}>
               <Text>{review.Cafe.name}</Text>
-              <Text>{review.Cafe.address}</Text>
+              <Text>{shortennedAddress}</Text>
             </View>
           </Link>
         </View>

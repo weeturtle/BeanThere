@@ -1,5 +1,6 @@
 import prisma from "../database";
 import { Cafe } from "../graph/types";
+import authenticate from "../util/authenticate";
 
 const cafeResolver = {
   Reviews: async (cafe: Cafe) => {
@@ -15,6 +16,25 @@ const cafeResolver = {
         cafe_id: cafe.id,
       },
     });
+  },
+  last_visit: async (cafe: Cafe, _: any, context: unknown) => {
+    const authResponse = await authenticate(context);
+
+    if (!authResponse) {
+      return null;
+    }
+
+    const review = await prisma.reviews.findFirst({
+      where: {
+        cafe_id: cafe.id,
+        user_id: authResponse.user_id,
+      },
+      orderBy: {
+        time: "desc",
+      },
+    });
+
+    return review?.time;
   },
 };
 

@@ -5,14 +5,14 @@ import { useMutation } from "@apollo/client";
 import { ADDREVIEW } from "@/constants/mutations/review";
 
 interface ReviewResponse {
-  review: {
+  add_review: {
     id: string;
   };
 }
 
 interface ReviewRequest {
   review: string;
-  rating: string;
+  rating: number;
   cafe_id: string;
   drink: string;
   time: string;
@@ -41,15 +41,18 @@ const NewReview = () => {
     return <Text>Loading...</Text>;
   }
 
-  const postReview = () => {
-    addReview({
-      variables: {
-        review,
-        rating,
-        cafe_id: cafeId,
-        drink,
-        time: new Date().toISOString(),
-      },
+  const postReview = async () => {
+    const variables = {
+      review,
+      rating: parseInt(rating),
+      cafe_id: cafeId,
+      drink,
+      time: new Date().toISOString(),
+    };
+
+    console.log(variables);
+    await addReview({
+      variables,
     });
   };
 
