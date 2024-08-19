@@ -22,3 +22,12 @@ export const CAFE = gql`
     }
   }
 `;
+
+export const SEARCHCAFE = gql`
+  query SearchCafe($prompt: String!) {
+    cafes(prompt: $prompt) {
+      id
+      name
+    }
+  }
+`;

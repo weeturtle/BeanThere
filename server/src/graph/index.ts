@@ -111,7 +111,7 @@ export const typeDefs = gql`
     cafe(id: ID!): Cafe
     reviews: [Review]!
     review(id: ID!): Review
-    cafes(city: String): [Cafe]!
+    cafes(city: String, prompt: String): [Cafe]!
     searchUser(prompt: String!): [UserSearch]!
   }
 

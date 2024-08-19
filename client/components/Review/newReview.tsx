@@ -1,24 +1,65 @@
-import { ReviewRequest } from "@/app/(app)/review";
 import React, { useState } from "react";
 import { View, Text, Pressable, TextInput } from "react-native";
+import SearchCafePrompt from "../cafes/searchCafe";
+import { useMutation } from "@apollo/client";
+import { ADDREVIEW } from "@/constants/mutations/review";
+import { Redirect } from "expo-router";
 
-interface NewReviewProps {
-  postReview: (input: ReviewRequest) => void;
+interface ReviewResponse {
+  add_review: {
+    id: string;
+  };
 }
 
-const NewReview = ({ postReview }: NewReviewProps) => {
+export interface ReviewRequest {
+  review: string;
+  rating: number;
+  cafe_id: string;
+  drink: string;
+  time: string;
+}
+
+interface Cafe {
+  id: string;
+  name: string;
+}
+
+const NewReview = () => {
   const [review, setReview] = useState("");
   const [rating, setRating] = useState("");
-  const [cafe_id, setCafeId] = useState("");
+  const [cafe, setCafe] = useState<Cafe | null>();
   const [drink, setDrink] = useState("");
 
+  const [addReview, { loading }] = useMutation<ReviewResponse, ReviewRequest>(
+    ADDREVIEW,
+    {
+      onCompleted: (data) => {
+        console.log(data);
+        Redirect({ href: "/" });
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    },
+  );
+
+  if (loading) {
+    return <Text>Loading...</Text>;
+  }
+
   const submit = () => {
-    postReview({
-      review,
-      rating: parseInt(rating),
-      cafe_id,
-      drink,
-      time: new Date().toISOString(),
+    if (!cafe) {
+      return;
+    }
+
+    addReview({
+      variables: {
+        review,
+        rating: parseInt(rating),
+        cafe_id: cafe.id,
+        drink,
+        time: new Date().toISOString(),
+      },
     });
   };
 
@@ -35,11 +76,18 @@ const NewReview = ({ postReview }: NewReviewProps) => {
         numberOfLines={3}
         onChangeText={(text) => setReview(text)}
       />
-      <TextInput
-        placeholder="Cafe ID"
-        onChangeText={(text) => setCafeId(text)}
-      />
+      {cafe ? (
+        <View>
+          <Text>{cafe.name}</Text>
+          <Pressable onPress={() => setCafe(null)}>
+            <Text>X</Text>
+          </Pressable>
+        </View>
+      ) : (
+        <SearchCafePrompt setCafe={setCafe} />
+      )}
       <TextInput placeholder="Drink" onChangeText={(text) => setDrink(text)} />
+
       <Pressable onPress={submit}>
         <Text>Submit</Text>
       </Pressable>
