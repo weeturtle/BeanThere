@@ -6,6 +6,7 @@ export const DASHBOARD_REVIEWS = gql`
       id
       time
       User {
+        id
         name
       }
       drink

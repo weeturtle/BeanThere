@@ -14,7 +14,9 @@ const Review = (review: IReview) => {
       <View style={styles.container}>
         <View style={styles.leftView}>
           <View>
-            <Text>{review.User.name}</Text>
+            <Link href={`/(app)/profile/${review.User.id}`}>
+              {review.User.name}
+            </Link>
             <Text>{formattedTime}</Text>
           </View>
           <View>

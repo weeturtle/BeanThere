@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { useLocalSearchParams } from "expo-router";
 import { useSuspenseQuery } from "@apollo/client";
 import { FETCHUSER } from "@/constants/queries/user";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import UserReviewList from "@/components/Review/userReviewFetch";
 
 interface UserResponse {
@@ -23,7 +23,7 @@ const UserPage = () => {
   });
 
   return (
-    <View>
+    <View style={styles.ReviewList}>
       <Text>{data.user.name}</Text>
       <Suspense fallback={<Text>Loading...</Text>}>
         <UserReviewList user_id={user} />
@@ -31,5 +31,11 @@ const UserPage = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  ReviewList: {
+    flex: 1,
+  },
+});
 
 export default UserPage;

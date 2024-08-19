@@ -8,6 +8,7 @@ export interface IReview {
   id: string;
   time: unknown;
   User: {
+    id: string;
     name: string;
   };
   drink: string;
