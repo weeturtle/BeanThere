@@ -18,6 +18,7 @@ export interface IReview {
     id: string;
     name: string;
     address: string;
+    last_visit: unknown;
   };
 }
 

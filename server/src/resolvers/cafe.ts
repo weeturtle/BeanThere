@@ -1,3 +1,4 @@
+import { GraphQLError } from "graphql";
 import prisma from "../database";
 import { Cafe } from "../graph/types";
 import authenticate from "../util/authenticate";
@@ -21,7 +22,7 @@ const cafeResolver = {
     const authResponse = await authenticate(context);
 
     if (!authResponse) {
-      return null;
+      throw new GraphQLError("Unauthorized");
     }
 
     const review = await prisma.reviews.findFirst({

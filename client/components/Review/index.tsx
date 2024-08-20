@@ -1,13 +1,18 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { IReview } from "./reviews";
-import formatTime from "./formatTime";
+import formatTime, { formatLastVisit } from "./formatTime";
 import { Link } from "expo-router";
 
 const Review = (review: IReview) => {
-  const date = new Date((review.time as number) * 1);
-  const formattedTime = formatTime(date);
+  const reviewDate = new Date((review.time as number) * 1);
+  const formattedTime = formatTime(reviewDate);
   const shortennedAddress = review.Cafe.address.split(",")[0];
+
+  const lastVisit = review.Cafe.last_visit;
+  const formattedLastVisit = lastVisit
+    ? `Last visited ${formatLastVisit(new Date((lastVisit as number) * 1))}`
+    : "Never visited";
 
   return (
     <View style={styles.outerContainer}>
@@ -36,6 +41,7 @@ const Review = (review: IReview) => {
             <View style={styles.cafeInfo}>
               <Text>{review.Cafe.name}</Text>
               <Text>{shortennedAddress}</Text>
+              <Text>{formattedLastVisit}</Text>
             </View>
           </Link>
         </View>
@@ -46,10 +52,12 @@ const Review = (review: IReview) => {
 
 const styles = StyleSheet.create({
   outerContainer: {
-    height: 240,
+    padding: 10,
   },
   container: {
     width: "100%",
+    padding: 10,
+    borderRadius: 10,
     borderColor: "#000",
     borderWidth: 1,
     flex: 2,
@@ -70,6 +78,7 @@ const styles = StyleSheet.create({
   cafeInfo: {
     flex: 2,
     flexDirection: "column",
+    alignItems: "flex-end",
     justifyContent: "space-between",
   },
 

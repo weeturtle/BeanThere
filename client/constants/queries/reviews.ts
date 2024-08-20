@@ -16,6 +16,7 @@ export const DASHBOARD_REVIEWS = gql`
         id
         name
         address
+        last_visit
       }
     }
   }
