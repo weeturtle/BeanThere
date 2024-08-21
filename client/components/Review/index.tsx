@@ -1,10 +1,27 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, Pressable } from "react-native";
-import { IReview } from "./reviews";
+import { View, Text, StyleSheet, Image } from "react-native";
 import formatTime, { formatLastVisit } from "./formatTime";
 import { Link } from "expo-router";
 
-const Review = (review: IReview) => {
+export interface IReview {
+  id: string;
+  time: unknown;
+  User: {
+    id: string;
+    name: string;
+  };
+  drink: string;
+  rating: number;
+  review: string;
+  Cafe: {
+    id: string;
+    name: string;
+    address: string;
+    last_visit: unknown;
+  };
+}
+
+const Review = ({ review }: { review: IReview }) => {
   const reviewDate = new Date((review.time as number) * 1);
   const formattedTime = formatTime(reviewDate);
   const shortennedAddress = review.Cafe.address.split(",")[0];
@@ -24,8 +41,23 @@ const Review = (review: IReview) => {
             </Link>
             <Text>{formattedTime}</Text>
           </View>
-          <View>
-            <Text>{review.rating}</Text>
+          <View style={styles.reviewInfo}>
+            <View style={styles.ratingContainer}>
+              {Array.from(Array(review.rating)).map((_, i) => (
+                <Image
+                  key={i}
+                  style={styles.coffeeBean}
+                  source={require("../../assets/images/full-bean.png")}
+                />
+              ))}
+              {Array.from(Array(5 - review.rating)).map((_, i) => (
+                <Image
+                  key={i}
+                  style={styles.coffeeBean}
+                  source={require("../../assets/images/empty-bean.png")}
+                />
+              ))}
+            </View>
             <Text>{review.drink}</Text>
             <Text>{review.review}</Text>
           </View>
@@ -66,6 +98,19 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
 
+  ratingContainer: {
+    padding: 0,
+    gap: 4,
+    margin: 0,
+    flexDirection: "row",
+  },
+
+  coffeeBean: {
+    padding: 2,
+    height: 24,
+    width: 24,
+  },
+
   leftView: {
     maxWidth: "50%",
   },
@@ -73,6 +118,11 @@ const styles = StyleSheet.create({
   rightView: {
     flexDirection: "column",
     alignItems: "flex-end",
+  },
+
+  reviewInfo: {
+    flex: 1,
+    marginTop: 15,
   },
 
   cafeInfo: {

@@ -2,7 +2,8 @@ import React from "react";
 import { useSuspenseQuery } from "@apollo/client";
 import { View } from "react-native";
 import { CAFEREVIEWS } from "@/constants/queries/reviews";
-import { IReview, ReviewList } from "./reviews";
+import Review, { IReview } from "..";
+import { ReviewList } from "../reviewList";
 
 interface CafeReviewsProps {
   cafe_id: string;
@@ -30,7 +31,7 @@ const CafeReviews = ({ cafe_id }: CafeReviewsProps) => {
     return <View>Error</View>;
   }
 
-  return <ReviewList reviews={data.cafe.Reviews} />;
+  return <ReviewList reviews={data.cafe.Reviews} ReviewItem={Review} />;
 };
 
 export default CafeReviews;

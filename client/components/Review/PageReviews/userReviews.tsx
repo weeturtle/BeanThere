@@ -1,8 +1,8 @@
 import React from "react";
-import { View } from "react-native";
-import { IReview, ReviewList } from "./reviews";
 import { useSuspenseQuery } from "@apollo/client";
 import { FETCHUSERREVIEWS } from "@/constants/queries/user";
+import Review, { IReview } from "..";
+import { ReviewList } from "../reviewList";
 
 interface UserReviewListProps {
   user_id: string;
@@ -18,7 +18,7 @@ const UserReviewList = ({ user_id }: UserReviewListProps) => {
     },
   );
 
-  return <ReviewList reviews={data.user.Reviews} />;
+  return <ReviewList reviews={data.user.Reviews} ReviewItem={Review} />;
 };
 
 export default UserReviewList;

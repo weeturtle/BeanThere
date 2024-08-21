@@ -43,3 +43,25 @@ export const CAFEREVIEWS = gql`
     }
   }
 `;
+
+export const PERSONALREVIEWS = gql`
+  query PersonalReviews {
+    user {
+      Reviews {
+        id
+        time
+        User {
+          name
+        }
+        drink
+        rating
+        review
+        Cafe {
+          id
+          name
+          address
+        }
+      }
+    }
+  }
+`;

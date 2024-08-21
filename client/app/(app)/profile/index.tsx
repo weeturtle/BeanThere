@@ -13,6 +13,10 @@ const ProfilePage = () => {
         <Text>See Friends</Text>
       </Link>
 
+      <Link href="/(app)/profile/posts">
+        <Text>My Posts</Text>
+      </Link>
+
       <Pressable onPress={signOut}>
         <Text>Sign out</Text>
       </Pressable>

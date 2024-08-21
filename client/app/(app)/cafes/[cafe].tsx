@@ -3,7 +3,7 @@ import { View, Text, ScrollView, Image } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
 import { useSuspenseQuery } from "@apollo/client";
 import { CAFE } from "@/constants/queries/cafes";
-import CafeReviews from "@/components/Review/cafeReviews";
+import CafeReviews from "@/components/Review/PageReviews/cafeReviews";
 
 interface ICafe {
   id: string;

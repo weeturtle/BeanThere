@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { Text, View } from "react-native";
 import { Link } from "expo-router";
-import Reviews from "@/components/Review/reviews";
+import Reviews from "@/components/Review/PageReviews/dashboardReviews";
 
 const App = () => {
   return (
