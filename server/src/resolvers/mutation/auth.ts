@@ -17,6 +17,10 @@ interface AuthResponse {
   token: string;
 }
 
+interface IClearTokensRequest {
+  user_id?: string;
+}
+
 const authMutationResolvers = {
   login: async (
     _: any,
@@ -100,6 +104,17 @@ const authMutationResolvers = {
     } catch (e) {
       return false;
     }
+  },
+  clear_tokens: async (_: any, { input }: { input: IClearTokensRequest }) => {
+    const response = await axiosAuthClient.post("/clearTokens", {
+      userId: input.user_id,
+    });
+
+    if (response.status !== 200) {
+      throw new GraphQLError("Failed to clear tokens");
+    }
+
+    return true;
   },
 };
 

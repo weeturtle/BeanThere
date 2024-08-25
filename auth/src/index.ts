@@ -8,7 +8,7 @@ import logoutHandler from "./handlers/logoutHandler";
 import registerHandler from "./handlers/signupHandler";
 import deleteHandler from "./handlers/deleteHandler";
 import usersHandler from "./handlers/usersHandler";
-import prisma from "./database";
+import clearTokenHandler from "./handlers/clearTokenHandler";
 
 if (!SECRET) {
   console.error("SECRET is not defined");
@@ -27,6 +27,7 @@ app.post("/logout", logoutHandler);
 app.post("/register", registerHandler);
 app.get("/users", usersHandler);
 app.delete("/delete/:id", deleteHandler);
+app.post("/clearTokens", clearTokenHandler);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

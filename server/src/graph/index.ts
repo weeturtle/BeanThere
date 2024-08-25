@@ -102,6 +102,10 @@ export const typeDefs = gql`
     token: String!
   }
 
+  input ClearTokensRequest {
+    user_id: ID
+  }
+
   type AuthPayload {
     token: String!
   }
@@ -119,6 +123,7 @@ export const typeDefs = gql`
     login(input: LoginRequest!): AuthPayload
     register(input: RegisterRequest!): AuthPayload
     verify(input: VerifyRequest!): Boolean
+    clear_tokens(input: ClearTokensRequest!): Boolean
     logout: Boolean
 
     add_review(input: NewReviewRequest!): Review
