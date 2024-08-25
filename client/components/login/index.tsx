@@ -4,6 +4,7 @@ import { useMutation } from "@apollo/client";
 import { router } from "expo-router";
 import LoginView from "./Login";
 import { useAuth } from "@/hooks/useAuth";
+import { client } from "../apollo";
 
 interface ILoginRequest {
   email: string;
@@ -23,12 +24,13 @@ const Login = () => {
     ILoginResponse,
     ILoginRequest
   >(LOGIN, {
-    onCompleted: (data) => {
+    onCompleted: async (data) => {
       const {
         login: { token },
       } = data;
       console.log(data);
       signIn(token);
+      await client.resetStore();
       router.replace("/");
     },
   });

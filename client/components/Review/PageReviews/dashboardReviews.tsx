@@ -10,6 +10,7 @@ interface ReviewProps {
 }
 
 const Reviews = () => {
+  console.log("Fetching reviews");
   const { data, error } = useSuspenseQuery<ReviewProps>(DASHBOARD_REVIEWS);
 
   if (error) {
