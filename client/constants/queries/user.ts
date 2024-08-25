@@ -27,6 +27,7 @@ export const FETCHUSERREVIEWS = gql`
           description
           address
           city
+          last_visit
         }
         User {
           id

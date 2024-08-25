@@ -38,6 +38,7 @@ export const CAFEREVIEWS = gql`
           id
           name
           address
+          last_visit
         }
       }
     }
@@ -60,6 +61,7 @@ export const PERSONALREVIEWS = gql`
           id
           name
           address
+          last_visit
         }
       }
     }

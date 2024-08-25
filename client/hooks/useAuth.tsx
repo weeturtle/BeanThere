@@ -5,7 +5,6 @@ import React, {
   createContext,
   ReactNode,
   useContext,
-  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -35,14 +34,19 @@ const AuthContext = createContext<Context>({
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [token, setToken] = useState<string>("");
 
+  const clearToken = () => {
+    localStorage.removeItem("token");
+    setToken("");
+  };
+
   const signIn = (token: string) => {
+    clearToken();
     localStorage.setItem("token", token);
     setToken(token);
   };
 
   const signOut = () => {
-    localStorage.removeItem("token");
-    setToken("");
+    clearToken();
     router.replace("/login");
   };
 

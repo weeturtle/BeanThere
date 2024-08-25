@@ -1,6 +1,6 @@
+import React from "react";
 import { DASHBOARD_REVIEWS } from "@/constants/queries/reviews";
 import { useSuspenseQuery } from "@apollo/client";
-import React, { FC } from "react";
 import { StyleSheet, SafeAreaView, Text } from "react-native";
 import Review, { IReview } from "..";
 import { ReviewList } from "../reviewList";

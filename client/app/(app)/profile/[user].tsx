@@ -3,7 +3,7 @@ import { useLocalSearchParams } from "expo-router";
 import { useSuspenseQuery } from "@apollo/client";
 import { FETCHUSER } from "@/constants/queries/user";
 import { View, Text, StyleSheet } from "react-native";
-import UserReviewList from "@/components/Review/userReviewFetch";
+import UserReviewList from "@/components/Review/PageReviews/userReviews";
 
 interface UserResponse {
   user: {
