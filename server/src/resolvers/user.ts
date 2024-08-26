@@ -30,6 +30,9 @@ const userResolver = {
       where: {
         user_id: id,
       },
+      orderBy: {
+        time: "desc",
+      },
     });
   },
 };
