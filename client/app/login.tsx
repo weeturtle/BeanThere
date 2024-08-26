@@ -1,6 +1,6 @@
-import Login from "@/components/login";
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import Login from "@/components/login";
+import { View, StyleSheet, Text } from "react-native";
 
 const LoginPage = () => {
   return (

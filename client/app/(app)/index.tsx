@@ -1,18 +1,23 @@
 import React, { Suspense } from "react";
 import { Text, View } from "react-native";
-import { Link } from "expo-router";
+import { Link, Stack } from "expo-router";
 import Reviews from "@/components/Review/PageReviews/dashboardReviews";
+import DashboardHeader from "@/components/headers/dashboardHeader";
 
 const App = () => {
   return (
-    <View style={{ flex: 1 }}>
-      <Link href="/review">
-        <Text>Add Reviews</Text>
-      </Link>
-      <Suspense fallback={<Text>Loading...</Text>}>
-        <Reviews />
-      </Suspense>
-    </View>
+    <>
+      <Stack.Screen
+        options={{
+          header: () => <DashboardHeader />,
+        }}
+      />
+      <View style={{ flex: 1 }}>
+        <Suspense fallback={<Text>Loading...</Text>}>
+          <Reviews />
+        </Suspense>
+      </View>
+    </>
   );
 };
 
