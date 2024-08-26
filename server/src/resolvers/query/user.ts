@@ -20,7 +20,6 @@ export const userQuery = async (
   { id, email }: UserQueryArgs,
   context: unknown,
 ) => {
-  console.log(context);
   if (id) {
     return prisma.users.findUnique({ where: { id } });
   } else if (email) {
@@ -32,8 +31,6 @@ export const userQuery = async (
   if (authResponse) {
     return prisma.users.findUnique({ where: { id: authResponse.user_id } });
   }
-
-  console.log(authResponse);
 
   throw new GraphQLError("Invalid query");
 };
