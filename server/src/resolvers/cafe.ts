@@ -9,6 +9,9 @@ const cafeResolver = {
       where: {
         cafe_id: cafe.id,
       },
+      orderBy: {
+        time: "desc",
+      },
     });
   },
   OpeningTimes: async (cafe: Cafe) => {
