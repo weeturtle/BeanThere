@@ -1,6 +1,6 @@
 import { GraphQLError } from "graphql";
-import { axiosAuthClient } from "../../util/envs";
-import prisma from "../../database";
+import { axiosAuthClient } from "../../../util/envs";
+import prisma from "../../../database";
 
 interface ILoginRequest {
   email: string;

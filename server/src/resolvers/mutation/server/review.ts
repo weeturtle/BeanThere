@@ -33,6 +33,19 @@ const reviewResolvers = {
       },
     });
   },
+  remove_review: async (_: any, { id }: { id: string }) => {
+    try {
+      await prisma.reviews.delete({
+        where: {
+          id,
+        },
+      });
+      return true;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  },
 };
 
 export default reviewResolvers;
