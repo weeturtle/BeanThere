@@ -1,8 +1,9 @@
+import React from "react";
+import { Slot } from "expo-router";
+import { SafeAreaView, StyleSheet } from "react-native";
+import { ApolloProvider } from "@apollo/client";
 import { client } from "@/components/apollo";
 import AuthProvider from "@/hooks/useAuth";
-import { ApolloProvider } from "@apollo/client";
-import { Slot } from "expo-router";
-import React from "react";
 
 const RootLayout = () => {
   return (
@@ -13,5 +14,11 @@ const RootLayout = () => {
     </ApolloProvider>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#E0D7CF",
+  },
+});
 
 export default RootLayout;

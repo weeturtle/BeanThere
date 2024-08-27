@@ -12,7 +12,13 @@ const AppLayout = () => {
 
   return (
     <>
-      <Stack />
+      <Stack
+        screenOptions={{
+          contentStyle: {
+            backgroundColor: "#E9E3DD",
+          },
+        }}
+      />
       <Footer />
     </>
   );
