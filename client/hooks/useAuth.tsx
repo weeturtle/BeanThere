@@ -1,6 +1,7 @@
 import { VERIFY } from "@/constants/mutations/auth";
 import { useMutation } from "@apollo/client";
 import { router } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, {
   createContext,
   ReactNode,
@@ -24,6 +25,33 @@ interface Context {
   token: string;
 }
 
+export const storeToken = async (value: string) => {
+  try {
+    await AsyncStorage.setItem("token", value);
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const retrieveToken = async () => {
+  try {
+    const value = await AsyncStorage.getItem("token");
+    if (value !== null) {
+      return value;
+    }
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const removeToken = async () => {
+  try {
+    await AsyncStorage.removeItem("token");
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 const AuthContext = createContext<Context>({
   signIn: () => {},
   signOut: () => {},
@@ -34,19 +62,19 @@ const AuthContext = createContext<Context>({
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [token, setToken] = useState<string>("");
 
-  const clearToken = () => {
-    localStorage.removeItem("token");
+  const clearToken = async () => {
+    await removeToken();
     setToken("");
   };
 
-  const signIn = (token: string) => {
+  const signIn = async (token: string) => {
     clearToken();
-    localStorage.setItem("token", token);
+    await storeToken(token);
     setToken(token);
   };
 
-  const signOut = () => {
-    clearToken();
+  const signOut = async () => {
+    await clearToken();
     router.replace("/login");
   };
 
@@ -61,9 +89,10 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const verifyToken = async (): Promise<boolean> => {
     try {
+      const token = await retrieveToken();
       const response = await verify({
         variables: {
-          token: localStorage.getItem("token") || "",
+          token: token || "",
         },
       });
 
@@ -72,7 +101,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         return false;
       }
 
-      setToken(localStorage.getItem("token") || "");
+      // setToken(localStorage.getItem("token") || "");
       return true;
     } catch (error) {
       signOut();
