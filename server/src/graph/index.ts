@@ -131,6 +131,8 @@ export const typeDefs = gql`
     add_friend(input: NewFriendRequest!): User
 
     remove_cafe(id: ID!): Boolean
+    remove_review(id: ID!): Boolean
+    remove_user(id: ID!): Boolean
   }
 `;
 
