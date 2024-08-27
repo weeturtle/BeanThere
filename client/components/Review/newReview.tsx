@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { View, Text, Pressable, TextInput } from "react-native";
 import SearchCafePrompt from "../cafes/searchCafe";
 import { useMutation } from "@apollo/client";
 import { ADDREVIEW } from "@/constants/mutations/review";
-import { Redirect } from "expo-router";
+import { Redirect, router } from "expo-router";
 
 interface ReviewResponse {
   add_review: {
@@ -24,7 +24,7 @@ interface Cafe {
   name: string;
 }
 
-const NewReview = () => {
+const NewReview = forwardRef((_, ref) => {
   const [review, setReview] = useState("");
   const [rating, setRating] = useState("");
   const [cafe, setCafe] = useState<Cafe | null>();
@@ -35,17 +35,13 @@ const NewReview = () => {
     {
       onCompleted: (data) => {
         console.log(data);
-        Redirect({ href: "/" });
+        router.replace("/");
       },
       onError: (error) => {
         console.log(error);
       },
     },
   );
-
-  if (loading) {
-    return <Text>Loading...</Text>;
-  }
 
   const submit = () => {
     if (!cafe) {
@@ -62,6 +58,14 @@ const NewReview = () => {
       },
     });
   };
+
+  useImperativeHandle(ref, () => ({
+    submit,
+  }));
+
+  if (loading) {
+    return <Text>Loading...</Text>;
+  }
 
   return (
     <View>
@@ -93,6 +97,6 @@ const NewReview = () => {
       </Pressable>
     </View>
   );
-};
+});
 
 export default NewReview;
