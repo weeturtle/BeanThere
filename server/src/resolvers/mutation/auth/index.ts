@@ -1,16 +1,9 @@
 import { GraphQLError } from "graphql";
 import { axiosAuthClient } from "../../../util/envs";
-import prisma from "../../../database";
 import authenticate from "../../../util/authenticate";
 
 interface ILoginRequest {
   email: string;
-  password: string;
-}
-
-interface IRegisterRequest {
-  email: string;
-  name: string;
   password: string;
 }
 
@@ -56,14 +49,6 @@ const authMutationResolvers = {
       console.error(e);
       throw new GraphQLError("Unable to logout");
     }
-  },
-  verify: async (
-    _: any,
-    { input: { token } }: { input: { token: string } },
-  ) => {
-    // const authResponse = await authenticate({ token });
-    // if (!authResponse) return false;
-    // return true;
   },
   clear_tokens: async (_: any, { input }: { input: IClearTokensRequest }) => {
     const response = await axiosAuthClient.post("/clearTokens", {

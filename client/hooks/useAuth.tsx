@@ -1,5 +1,4 @@
-import { VERIFY } from "@/constants/mutations/auth";
-import { useMutation } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { router } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, {
@@ -9,6 +8,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import { VERIFY } from "@/constants/queries/auth";
 
 interface VerifyRequest {
   token: string;
@@ -78,23 +78,18 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     router.replace("/login");
   };
 
-  const [verify] = useMutation<VerifyResponse, VerifyRequest>(VERIFY, {
-    onCompleted: (data) => {
-      console.log(data);
-      if (!data.verify) {
-        signOut();
-      }
-    },
-  });
+  const [verify] = useLazyQuery<VerifyResponse>(VERIFY);
 
   const verifyToken = async (): Promise<boolean> => {
     try {
       const token = await retrieveToken();
-      const response = await verify({
-        variables: {
-          token: token || "",
-        },
-      });
+      if (!token) {
+        signOut();
+        return false;
+      }
+
+      console.log("token", token);
+      const response = await verify();
 
       if (!response.data) {
         signOut();
