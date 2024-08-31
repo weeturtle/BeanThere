@@ -1,12 +1,4 @@
-import { gql } from "graphql-tag";
-import userResolver from "../resolvers/user";
-import reviewResolver from "../resolvers/review";
-import cafeResolver from "../resolvers/cafe";
-import queryResolver from "../resolvers/query";
-import mutationResolver from "../resolvers/mutation";
-
-export const typeDefs = gql`
-  type User {
+type User {
     id: ID!
     email: String!
     name: String!
@@ -14,9 +6,9 @@ export const typeDefs = gql`
     Friends: [User]!
     Starred_Cafes: [Cafe]!
     Reviews: [Review]!
-  }
+}
 
-  type Cafe {
+type Cafe {
     id: ID!
     name: String!
     description: String!
@@ -26,18 +18,18 @@ export const typeDefs = gql`
 
     OpeningTimes: [OpeningTimes]!
     Reviews: [Review]!
-  }
+}
 
-  type OpeningTimes {
+type OpeningTimes {
     id: ID!
     cafe_id: ID!
     day: String!
     time: String!
 
     Cafe: Cafe!
-  }
+}
 
-  type Review {
+type Review {
     id: ID!
     rating: Int!
     review: String!
@@ -47,70 +39,70 @@ export const typeDefs = gql`
     User: User!
     Cafe: Cafe!
     Photos: [Photo]!
-  }
+}
 
-  type Photo {
+type Photo {
     id: ID!
     key: String!
 
     Cafe: Cafe!
     Review: Review!
-  }
+}
 
-  type UserSearch {
+type UserSearch {
     user: User!
     isFriend: Boolean!
-  }
+}
 
-  input NewFriendRequest {
+input NewFriendRequest {
     email: String!
-  }
+}
 
-  input OpeningTimesInput {
+input OpeningTimesInput {
     day: String!
     time: String!
-  }
+}
 
-  input NewCafeRequest {
+input NewCafeRequest {
     name: String!
     description: String!
     address: String!
     city: String!
     opening_times: [OpeningTimesInput]!
-  }
+}
 
-  input NewReviewRequest {
+input NewReviewRequest {
     rating: Int!
     review: String!
     drink: String!
     time: String!
     cafe_id: ID!
-  }
+}
 
-  input LoginRequest {
+input LoginRequest {
     email: String!
     password: String!
-  }
+}
 
-  input RegisterRequest {
+input RegisterRequest {
     name: String!
     email: String!
     password: String!
-  }
+}
 
-  input VerifyRequest {
+input VerifyRequest {
     token: String!
-  }
+}
 
-  input ClearTokensRequest {
+input ClearTokensRequest {
     user_id: ID
-  }
+}
 
-  type AuthPayload {
+type AuthPayload {
     token: String!
-  }
+}
 
-  type Query {
+type Query {
     user(email: String, id: String): User
     cafe(id: ID!): Cafe
     reviews: [Review]!
@@ -118,9 +110,9 @@ export const typeDefs = gql`
     cafes(city: String, prompt: String): [Cafe]!
     searchUser(prompt: String!): [UserSearch]!
     matchUserTest: Boolean!
-  }
+}
 
-  type Mutation {
+type Mutation {
     login(input: LoginRequest!): AuthPayload
     register(input: RegisterRequest!): AuthPayload
     verify(input: VerifyRequest!): Boolean
@@ -134,13 +126,4 @@ export const typeDefs = gql`
     remove_cafe(id: ID!): Boolean
     remove_review(id: ID!): Boolean
     remove_user(id: ID!): Boolean
-  }
-`;
-
-export const resolvers = {
-  User: userResolver,
-  Cafe: cafeResolver,
-  Review: reviewResolver,
-  Query: queryResolver,
-  Mutation: mutationResolver,
-};
+}
