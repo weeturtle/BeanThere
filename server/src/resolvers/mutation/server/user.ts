@@ -1,6 +1,7 @@
 import { GraphQLError } from "graphql";
 import prisma from "../../../database";
 import { axiosAuthClient } from "../../../util/envs";
+import { PrismaClientValidationError } from "@prisma/client/runtime/library";
 
 interface INewUser {
   name: string;
@@ -28,7 +29,7 @@ const userResolvers = {
       return false;
     }
   },
-  add_user: async (
+  register: async (
     _: any,
     { input: { name, email, password } }: { input: INewUser },
   ) => {
@@ -40,6 +41,8 @@ const userResolvers = {
         password,
       });
 
+      console.log(response);
+
       if (response.status !== 200) {
         throw new GraphQLError("Auth: Failed to add user");
       }
@@ -48,14 +51,23 @@ const userResolvers = {
 
       console.log(`Added user ${name} with id ${id} to auth service`);
 
-      // If the user was successfully added to the auth service, add them to the database
-      const prismaResponse = await prisma.users.create({
-        data: {
-          id,
-          name,
-          email,
-        },
-      });
+      try {
+        // If the user was successfully added to the auth service, add them to the database
+        const prismaResponse = await prisma.users.create({
+          data: {
+            id,
+            name,
+            email,
+          },
+        });
+      } catch (e: any) {
+        console.log(e);
+        if (e instanceof PrismaClientValidationError) {
+          // If the user already exists in the database, delete them from the auth service
+          await axiosAuthClient.delete(`/delete/${id}`);
+          throw new GraphQLError("User already exists");
+        }
+      }
 
       console.log(`Added user ${name} with id ${id} to database`);
 
