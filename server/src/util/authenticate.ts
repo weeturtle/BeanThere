@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { AUTH_URL } from "./envs";
 import { AuthContext } from "../graph/types";
 
@@ -22,7 +22,10 @@ const authenticate = async (context: unknown): Promise<AuthResponse | null> => {
 
     return response.data;
   } catch (e) {
-    console.error(e);
+    if (e instanceof AxiosError) {
+      console.error(`Auth: Verify token error: ${e.message}`);
+    }
+
     return null;
   }
 };

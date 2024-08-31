@@ -1,6 +1,7 @@
 import { GraphQLError } from "graphql";
 import { axiosAuthClient } from "../../../util/envs";
 import prisma from "../../../database";
+import authenticate from "../../../util/authenticate";
 
 interface ILoginRequest {
   email: string;
@@ -42,34 +43,6 @@ const authMutationResolvers = {
       throw new GraphQLError("Unauthorized");
     }
   },
-  register: async (
-    _: any,
-    { input: { name, email, password } }: { input: IRegisterRequest },
-  ): Promise<AuthResponse | null> => {
-    try {
-      const response = await axiosAuthClient.post("/register", {
-        email,
-        password,
-      });
-
-      if (response.status !== 200) {
-        throw new GraphQLError("Unauthorized");
-      }
-
-      prisma.users.create({
-        data: {
-          id: response.data.id,
-          email: email,
-          name: name,
-        },
-      });
-
-      return { token: response.data.token };
-    } catch (e) {
-      console.error(e);
-      throw new GraphQLError("Unauthorized");
-    }
-  },
   logout: async (): Promise<boolean> => {
     try {
       const response = await axiosAuthClient.post("/logout");
@@ -88,22 +61,10 @@ const authMutationResolvers = {
     _: any,
     { input: { token } }: { input: { token: string } },
   ) => {
-    console.log(`Testing token: ${token}`);
-    try {
-      const response = await axiosAuthClient.get("/verify", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+    const authResponse = await authenticate({ token });
 
-      if (response.status !== 200) {
-        throw new GraphQLError("Unauthorized");
-      }
-
-      return true;
-    } catch (e) {
-      return false;
-    }
+    if (!authResponse) return false;
+    return true;
   },
   clear_tokens: async (_: any, { input }: { input: IClearTokensRequest }) => {
     const response = await axiosAuthClient.post("/clearTokens", {
