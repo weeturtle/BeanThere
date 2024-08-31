@@ -7,9 +7,3 @@ export const LOGIN = gql`
     }
   }
 `;
-
-export const VERIFY = gql`
-  mutation Verify($token: String!) {
-    verify(input: { token: $token })
-  }
-`;

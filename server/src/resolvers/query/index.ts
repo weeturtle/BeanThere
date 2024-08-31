@@ -1,3 +1,4 @@
+import { verifyQuery } from "./auth";
 import { cafeQuery, cafesQuery } from "./cafe";
 import { allReviewQuery, reviewQueryById } from "./review";
 import matchUserTestQuery from "./tests";
@@ -11,6 +12,7 @@ const queryResolver = {
   reviews: allReviewQuery,
   searchUser: userFriendsQuery,
   matchUserTest: matchUserTestQuery,
+  verify: verifyQuery,
 };
 
 export default queryResolver;
