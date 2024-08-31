@@ -61,10 +61,9 @@ const authMutationResolvers = {
     _: any,
     { input: { token } }: { input: { token: string } },
   ) => {
-    const authResponse = await authenticate({ token });
-
-    if (!authResponse) return false;
-    return true;
+    // const authResponse = await authenticate({ token });
+    // if (!authResponse) return false;
+    // return true;
   },
   clear_tokens: async (_: any, { input }: { input: IClearTokensRequest }) => {
     const response = await axiosAuthClient.post("/clearTokens", {
