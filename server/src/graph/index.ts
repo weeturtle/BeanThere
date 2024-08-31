@@ -117,13 +117,13 @@ export const typeDefs = gql`
     review(id: ID!): Review
     cafes(city: String, prompt: String): [Cafe]!
     searchUser(prompt: String!): [UserSearch]!
+    verify: Boolean
     matchUserTest: Boolean!
   }
 
   type Mutation {
     login(input: LoginRequest!): AuthPayload
     register(input: RegisterRequest!): AuthPayload
-    verify(input: VerifyRequest!): Boolean
     clear_tokens(input: ClearTokensRequest!): Boolean
     logout: Boolean
 
