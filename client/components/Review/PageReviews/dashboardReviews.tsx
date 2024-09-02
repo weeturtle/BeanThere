@@ -11,7 +11,10 @@ interface ReviewProps {
 
 const Reviews = () => {
   console.log("Fetching reviews");
-  const { data, error } = useSuspenseQuery<ReviewProps>(DASHBOARD_REVIEWS);
+  // Error policy means error is caught and doesn't crash the page
+  const { data, error } = useSuspenseQuery<ReviewProps>(DASHBOARD_REVIEWS, {
+    errorPolicy: "all",
+  });
 
   if (error) {
     return <Text>Error</Text>;
@@ -19,7 +22,7 @@ const Reviews = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ReviewList reviews={data.reviews} ReviewItem={Review} />
+      <ReviewList reviews={data?.reviews || []} ReviewItem={Review} />
     </SafeAreaView>
   );
 };
