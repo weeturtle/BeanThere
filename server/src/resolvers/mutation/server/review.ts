@@ -16,6 +16,7 @@ const reviewResolvers = {
     { input: { rating, review, cafe_id, drink, time } }: { input: INewReview },
     context: unknown,
   ) => {
+    console.log("Auth Request: Add Review");
     const authResponse = await authenticate(context);
 
     if (!authResponse) {

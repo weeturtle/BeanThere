@@ -21,7 +21,7 @@ const authenticate = async (context: unknown): Promise<AuthResponse | null> => {
     if (response.status !== 200) {
       return null;
     }
-
+    1;
     return response.data;
   } catch (e) {
     if (e instanceof AxiosError) {

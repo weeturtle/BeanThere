@@ -22,6 +22,7 @@ const cafeResolver = {
     });
   },
   last_visit: async (cafe: Cafe, _: any, context: unknown) => {
+    console.log("Auth Request: Last Visit");
     const authResponse = await authenticate(context);
 
     if (!authResponse) {

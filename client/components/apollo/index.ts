@@ -19,7 +19,9 @@ const authLink = setContext(async (_, { headers }) => {
 export const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
-  devtools: {
-    enabled: true,
+  defaultOptions: {
+    query: {
+      pollInterval: 0,
+    },
   },
 });
