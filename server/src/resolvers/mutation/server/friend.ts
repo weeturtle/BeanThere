@@ -12,6 +12,7 @@ const friendResolvers = {
     { input: { email } }: { input: INewFriend },
     context: unknown,
   ) => {
+    console.log("Auth Request: Add Friend");
     const authResponse = await authenticate(context);
 
     if (!authResponse) {

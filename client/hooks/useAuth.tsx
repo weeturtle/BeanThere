@@ -78,30 +78,48 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     router.replace("/login");
   };
 
-  const [verify] = useLazyQuery<VerifyResponse>(VERIFY);
+  const [verify, { error }] = useLazyQuery<VerifyResponse>(VERIFY, {
+    onCompleted: (data) => {
+      console.log(`Data from verify query: ${data.verify}`);
+    },
+    errorPolicy: "all",
+    pollInterval: 0,
+  });
 
   const verifyToken = async (): Promise<boolean> => {
-    try {
-      const token = await retrieveToken();
-      if (!token) {
-        signOut();
-        return false;
-      }
+    console.group("Auth: VerifyToken");
 
-      console.log("token", token);
-      const response = await verify();
+    console.log("Fetching token from local storage");
+    const token = await retrieveToken();
+    console.log(`Token from storage: ${token}`);
 
-      if (!response.data) {
-        signOut();
-        return false;
-      }
-
-      // setToken(localStorage.getItem("token") || "");
-      return true;
-    } catch (error) {
+    const errorVerificating = (message: string): false => {
+      console.log(message);
       signOut();
+      console.log("Signed out");
+      console.groupEnd();
       return false;
+    };
+
+    if (!token) {
+      console.log("No token found in storage, signing the user out");
+      return errorVerificating("No token found in storage");
     }
+
+    console.log("Verifying token with auth service");
+    const response = await verify();
+
+    if (error) {
+      return errorVerificating("Error verifying token, signing the user out");
+    }
+
+    if (!response.data || !response.data.verify) {
+      return errorVerificating("No response from auth service");
+    }
+
+    console.log("No errors authenticating token, so user is signed in");
+    console.groupEnd();
+    return true;
   };
 
   const contextValue = useMemo(

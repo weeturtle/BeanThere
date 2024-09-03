@@ -26,6 +26,7 @@ export const userQuery = async (
     return prisma.users.findUnique({ where: { email } });
   }
 
+  console.log("Auth Request: User by email");
   const authResponse = await authenticate(context);
 
   if (authResponse) {
@@ -40,6 +41,7 @@ export const userFriendsQuery = async (
   { prompt }: { prompt: string },
   context: unknown,
 ) => {
+  console.log("Auth Request: User Friends");
   const authResponse = await authenticate(context);
   if (!authResponse) {
     throw new GraphQLError("Unauthorized");
