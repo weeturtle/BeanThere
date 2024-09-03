@@ -2,7 +2,7 @@ import { ApolloServer, ApolloServerPlugin } from "@apollo/server";
 import { buildSubgraphSchema } from "@apollo/subgraph";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs, resolvers } from "./graph";
-import { AuthContext } from "./graph/types";
+import authenticate, { AuthContext } from "./util/authenticate";
 
 const logginPlugin: ApolloServerPlugin = {
   async requestDidStart(requestContext) {
@@ -35,9 +35,13 @@ const main = async () => {
     listen: {
       port: 4000,
     },
-    context: async ({ req }) => ({
-      token: req.headers.authorization,
-    }),
+    context: async ({ req }) => {
+      const token = req.headers.authorization || "";
+
+      const user = await authenticate(token);
+
+      return user;
+    },
   });
 
   console.log(`🚀 Apollo ready at ${url}`);
