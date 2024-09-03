@@ -22,6 +22,6 @@ export interface Review {
   time: Date;
 }
 
-export interface AuthContext {
+export interface HeaderContext {
   token?: string;
 }

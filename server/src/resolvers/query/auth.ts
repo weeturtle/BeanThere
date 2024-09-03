@@ -1,8 +1,10 @@
-import authenticate from "../../util/authenticate";
+import authenticate, { AuthContext } from "../../util/authenticate";
 
 export const verifyQuery = async (_1: any, _2: any, context: unknown) => {
-  console.log("Auth Request: Verify Token");
-  const auth_response = await authenticate(context);
-  if (!auth_response) return false;
-  return true;
+  const { user_id } = context as AuthContext;
+
+  if (user_id) {
+    return true;
+  }
+  return false;
 };
