@@ -1,5 +1,5 @@
 import { GraphQLError } from "graphql";
-import authenticate from "../../../util/authenticate";
+import { AuthContext } from "../../../util/authenticate";
 import prisma from "../../../database";
 
 interface INewReview {
@@ -16,10 +16,9 @@ const reviewResolvers = {
     { input: { rating, review, cafe_id, drink, time } }: { input: INewReview },
     context: unknown,
   ) => {
-    console.log("Auth Request: Add Review");
-    const authResponse = await authenticate(context);
+    const { user_id } = context as AuthContext;
 
-    if (!authResponse) {
+    if (!user_id) {
       throw new GraphQLError("Unauthorized");
     }
 
@@ -28,7 +27,7 @@ const reviewResolvers = {
         rating,
         review,
         cafe_id,
-        user_id: authResponse.user_id,
+        user_id,
         drink,
         time: new Date(time),
       },

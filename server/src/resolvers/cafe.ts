@@ -1,7 +1,7 @@
 import { GraphQLError } from "graphql";
 import prisma from "../database";
 import { Cafe } from "../graph/types";
-import authenticate from "../util/authenticate";
+import { AuthContext } from "../util/authenticate";
 
 const cafeResolver = {
   Reviews: async (cafe: Cafe) => {
@@ -22,17 +22,16 @@ const cafeResolver = {
     });
   },
   last_visit: async (cafe: Cafe, _: any, context: unknown) => {
-    console.log("Auth Request: Last Visit");
-    const authResponse = await authenticate(context);
+    const { user_id } = context as AuthContext;
 
-    if (!authResponse) {
+    if (!user_id) {
       throw new GraphQLError("Unauthorized");
     }
 
     const review = await prisma.reviews.findFirst({
       where: {
         cafe_id: cafe.id,
-        user_id: authResponse.user_id,
+        user_id,
       },
       orderBy: {
         time: "desc",

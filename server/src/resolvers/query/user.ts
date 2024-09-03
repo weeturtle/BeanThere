@@ -1,7 +1,7 @@
 import { User } from "../../graph/types";
 import prisma from "../../database";
 import { GraphQLError } from "graphql";
-import authenticate from "../../util/authenticate";
+import { AuthContext } from "../../util/authenticate";
 
 export const userQueryByEmail = async (
   _: any,
@@ -20,17 +20,15 @@ export const userQuery = async (
   { id, email }: UserQueryArgs,
   context: unknown,
 ) => {
+  const { user_id } = context as AuthContext;
   if (id) {
     return prisma.users.findUnique({ where: { id } });
   } else if (email) {
     return prisma.users.findUnique({ where: { email } });
   }
 
-  console.log("Auth Request: User by email");
-  const authResponse = await authenticate(context);
-
-  if (authResponse) {
-    return prisma.users.findUnique({ where: { id: authResponse.user_id } });
+  if (user_id) {
+    return prisma.users.findUnique({ where: { id: user_id } });
   }
 
   throw new GraphQLError("Invalid query");
@@ -41,13 +39,11 @@ export const userFriendsQuery = async (
   { prompt }: { prompt: string },
   context: unknown,
 ) => {
-  console.log("Auth Request: User Friends");
-  const authResponse = await authenticate(context);
-  if (!authResponse) {
+  const { user_id } = context as AuthContext;
+
+  if (!user_id) {
     throw new GraphQLError("Unauthorized");
   }
-
-  const { user_id } = authResponse;
 
   const friends = await prisma.friends.findMany({
     where: {

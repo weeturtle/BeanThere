@@ -1,6 +1,6 @@
 import { GraphQLError } from "graphql";
 import prisma from "../../../database";
-import authenticate from "../../../util/authenticate";
+import { AuthContext } from "../../../util/authenticate";
 
 interface INewFriend {
   email: string;
@@ -12,10 +12,9 @@ const friendResolvers = {
     { input: { email } }: { input: INewFriend },
     context: unknown,
   ) => {
-    console.log("Auth Request: Add Friend");
-    const authResponse = await authenticate(context);
+    const { user_id } = context as AuthContext;
 
-    if (!authResponse) {
+    if (!user_id) {
       throw new GraphQLError("Unauthorized");
     }
 
@@ -31,7 +30,7 @@ const friendResolvers = {
 
     await prisma.friends.create({
       data: {
-        user_id: authResponse.user_id,
+        user_id,
         friend_user_id: user.id,
       },
     });
