@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Pressable, Text } from "react-native";
+import { Pressable, Text, StyleSheet } from "react-native";
 
 interface SubmitButtonProps {
   onPress: () => void;
@@ -26,16 +26,27 @@ const SubmitButton = ({
     <Pressable
       onPress={onPress}
       disabled={!canPress}
-      style={{
-        backgroundColor: canPress ? "blue" : "gray",
-        padding: 10,
-        borderRadius: 5,
-        alignItems: "center",
-      }}
+      style={canPress ? styles.canSubmit : styles.cannotSubmit}
     >
-      <Text style={{ color: "white" }}>Submit</Text>
+      <Text>Submit</Text>
     </Pressable>
   );
 };
+
+const styles = StyleSheet.create({
+  canSubmit: {
+    width: "80%",
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 5,
+  },
+  cannotSubmit: {
+    width: "80%",
+    backgroundColor: "gray",
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 5,
+  },
+});
 
 export default SubmitButton;
