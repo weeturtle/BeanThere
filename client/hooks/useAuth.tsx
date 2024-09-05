@@ -10,10 +10,6 @@ import React, {
 } from "react";
 import { VERIFY } from "@/constants/queries/auth";
 
-interface VerifyRequest {
-  token: string;
-}
-
 interface VerifyResponse {
   verify: boolean;
 }
@@ -102,7 +98,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
 
     if (!token) {
-      console.log("No token found in storage, signing the user out");
+      console.log("No token found in storage");
       return errorVerificating("No token found in storage");
     }
 
@@ -110,14 +106,14 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     const response = await verify();
 
     if (error) {
-      return errorVerificating("Error verifying token, signing the user out");
+      return errorVerificating("Error verifying token");
     }
 
     if (!response.data || !response.data.verify) {
-      return errorVerificating("No response from auth service");
+      return errorVerificating("Auth service couldn't verify token");
     }
 
-    console.log("No errors authenticating token, so user is signed in");
+    console.log("No errors authenticating token");
     console.groupEnd();
     return true;
   };

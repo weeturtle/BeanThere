@@ -4,12 +4,12 @@ import { useAuth } from "@/hooks/useAuth";
 import Footer from "@/components/footer";
 
 const AppLayout = () => {
-  // const { verifyToken, token } = useAuth();
+  const { verifyToken, token } = useAuth();
 
-  // useEffect(() => {
-  //   console.log("Dashboard layout: Checking if user is logged in");
-  //   verifyToken();
-  // }, [token]);
+  useEffect(() => {
+    console.log("Dashboard layout: Checking if user is logged in");
+    verifyToken();
+  }, [token]);
 
   return (
     <>
