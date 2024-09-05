@@ -1,6 +1,6 @@
 import { verifyQuery } from "./auth";
 import { cafeQuery, cafesQuery } from "./cafe";
-import { allReviewQuery, reviewQueryById } from "./review";
+import { relevantReviewsQuery, reviewQueryById } from "./review";
 import matchUserTestQuery from "./tests";
 import { userFriendsQuery, userQuery } from "./user";
 
@@ -9,7 +9,7 @@ const queryResolver = {
   cafe: cafeQuery,
   review: reviewQueryById,
   cafes: cafesQuery,
-  reviews: allReviewQuery,
+  reviews: relevantReviewsQuery,
   searchUser: userFriendsQuery,
   matchUserTest: matchUserTestQuery,
   verify: verifyQuery,
