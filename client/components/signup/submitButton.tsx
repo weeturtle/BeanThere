@@ -3,24 +3,32 @@ import { Pressable, Text, StyleSheet } from "react-native";
 
 interface SubmitButtonProps {
   onPress: () => void;
+  name: string;
+  email: string;
   password: string;
   confirmPassword: string;
 }
 
 const SubmitButton = ({
   onPress,
+  name,
+  email,
   password,
   confirmPassword,
 }: SubmitButtonProps) => {
   const [canPress, setCanPress] = useState(false);
 
   useEffect(() => {
+    if (!password || !confirmPassword || !name || !email) {
+      setCanPress(false);
+      return;
+    }
     if (password === confirmPassword) {
       setCanPress(true);
     } else {
       setCanPress(false);
     }
-  }, [password, confirmPassword]);
+  }, [password, confirmPassword, name, email]);
 
   return (
     <Pressable
