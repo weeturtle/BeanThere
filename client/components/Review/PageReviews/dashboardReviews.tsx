@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { DASHBOARD_REVIEWS } from "@/constants/queries/reviews";
-import { useQuery, useSuspenseQuery } from "@apollo/client";
+import { useLazyQuery, useQuery, useSuspenseQuery } from "@apollo/client";
 import { StyleSheet, SafeAreaView, Text, Pressable } from "react-native";
 import Review, { IReview } from "..";
 import { ReviewList } from "../reviewList";
@@ -10,16 +10,19 @@ interface ReviewProps {
 }
 
 const Reviews = () => {
-  console.log("Fetching reviews");
   // Error policy means error is caught and doesn't crash the page
-  const { data, error, fetchMore, refetch, loading } = useQuery<ReviewProps>(
-    DASHBOARD_REVIEWS,
-    {
+  const [load, { data, error, fetchMore, refetch, loading }] =
+    useLazyQuery<ReviewProps>(DASHBOARD_REVIEWS, {
       errorPolicy: "all",
-    },
-  );
+    });
+
+  useEffect(() => {
+    console.log("Fetching initial reviews");
+    load();
+  }, []);
 
   const handleFetchMore = () => {
+    console.log("Fetching more reviews");
     fetchMore({
       variables: {
         offset: data?.reviews.length,
@@ -47,11 +50,7 @@ const Reviews = () => {
       <ReviewList
         reviews={data?.reviews || []}
         ReviewItem={Review}
-        loadMore={
-          <Pressable onPress={handleFetchMore}>
-            <Text>Load more</Text>
-          </Pressable>
-        }
+        loadMore={handleFetchMore}
         loading={loading}
         refresh={refreshReviews}
       />
