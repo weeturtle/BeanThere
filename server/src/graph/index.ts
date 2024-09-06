@@ -113,7 +113,7 @@ export const typeDefs = gql`
   type Query {
     user(email: String, id: String): User
     cafe(id: ID!): Cafe
-    reviews: [Review]!
+    reviews(offset: Int): [Review]!
     review(id: ID!): Review
     cafes(city: String, prompt: String): [Cafe]!
     searchUser(prompt: String!): [UserSearch]!

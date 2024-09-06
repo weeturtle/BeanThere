@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const DASHBOARD_REVIEWS = gql`
-  query DashboardReviews {
-    reviews {
+  query DashboardReviews($offset: Int) {
+    reviews(offset: $offset) {
       id
       time
       User {
