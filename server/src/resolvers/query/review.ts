@@ -8,13 +8,19 @@ export const allReviewQuery = (): Promise<Review[] | null> => {
 
 export const relevantReviewsQuery = async (
   _: any,
-  _2: any,
+  { offset }: { offset?: number },
   context: unknown,
 ) => {
   const { user_id } = context as AuthContext;
 
   if (!user_id) {
     return null;
+  }
+
+  if (!offset) {
+    console.log(`Fetching initial reviews`);
+  } else {
+    console.log(`Fetching reviews with offset ${offset}`);
   }
 
   // Fetch reviews from the user themselves or the users they follow
@@ -37,6 +43,7 @@ export const relevantReviewsQuery = async (
     orderBy: {
       time: "desc",
     },
+    skip: offset || 0,
   });
 
   return reviews;
