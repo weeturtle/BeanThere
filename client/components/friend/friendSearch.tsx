@@ -1,7 +1,8 @@
 import { FRIENDSEARCH } from "@/constants/queries/friends";
 import { useLazyQuery, useQuery, useSuspenseQuery } from "@apollo/client";
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import { View, TextInput, Text } from "react-native";
+import InnerSearchBox from "./innerSearchBox";
 
 interface FriendSearchResponse {
   searchUser: {
@@ -20,15 +21,6 @@ interface FriendSearchRequest {
 const FriendSearch = () => {
   const [search, setSearch] = useState<string>("");
 
-  // const [friends, { data, loading, error, refetch }] = useLazyQuery<
-  const { data, refetch, error } = useQuery<
-    FriendSearchResponse,
-    FriendSearchRequest
-  >(FRIENDSEARCH, {
-    variables: { prompt: search },
-    skip: !search,
-  });
-
   return (
     <View>
       <TextInput
@@ -37,12 +29,7 @@ const FriendSearch = () => {
         onChangeText={setSearch}
       />
       <Suspense fallback={<Text>Loading...</Text>}>
-        {data &&
-          data.searchUser.map((friend) => (
-            <View key={friend.user.id}>
-              <Text>{friend.user.name}</Text>
-            </View>
-          ))}
+        <InnerSearchBox prompt={search} />
       </Suspense>
     </View>
   );
