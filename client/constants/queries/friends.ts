@@ -14,8 +14,11 @@ export const ALLFRIENDS = gql`
 export const FRIENDSEARCH = gql`
   query SearchUser($prompt: String!) {
     searchUser(prompt: $prompt) {
-      id
-      name
+      isFriend
+      user {
+        id
+        name
+      }
     }
   }
 `;

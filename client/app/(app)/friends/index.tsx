@@ -8,9 +8,11 @@ const FriendsPage = () => {
     <View>
       <Text>Friends Page</Text>
       <FriendSearch />
+      {/*
       <Suspense fallback={<Text>Loading...</Text>}>
         <FriendsView />
       </Suspense>
+      */}
     </View>
   );
 };

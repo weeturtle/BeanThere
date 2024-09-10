@@ -1,47 +1,48 @@
-import React, {
-  useState,
-  useEffect,
-  Suspense,
-  Dispatch,
-  SetStateAction,
-} from "react";
-import {
-  View,
-  TextInput,
-  Text,
-  NativeSyntheticEvent,
-  TextInputChangeEventData,
-  Pressable,
-} from "react-native";
+import { FRIENDSEARCH } from "@/constants/queries/friends";
+import { useLazyQuery, useQuery, useSuspenseQuery } from "@apollo/client";
+import React, { useState, Suspense } from "react";
+import { View, TextInput, Text } from "react-native";
 
-interface IFriend {
-  id: string;
-  name: string;
+interface FriendSearchResponse {
+  searchUser: {
+    user: {
+      id: string;
+      name: string;
+    };
+    isFriend: boolean;
+  }[];
+}
+
+interface FriendSearchRequest {
+  prompt: string;
 }
 
 const FriendSearch = () => {
   const [search, setSearch] = useState<string>("");
-  const [friends, setFriends] = useState<IFriend[]>([]);
 
-  const handleChange = (
-    e: NativeSyntheticEvent<TextInputChangeEventData>,
-  ): void => {
-    setSearch(e.nativeEvent.text);
-  };
+  // const [friends, { data, loading, error, refetch }] = useLazyQuery<
+  const { data, refetch, error } = useQuery<
+    FriendSearchResponse,
+    FriendSearchRequest
+  >(FRIENDSEARCH, {
+    variables: { prompt: search },
+    skip: !search,
+  });
 
   return (
     <View>
       <TextInput
         placeholder="Search for a friend"
         value={search}
-        onChange={handleChange}
+        onChangeText={setSearch}
       />
       <Suspense fallback={<Text>Loading...</Text>}>
-        {friends.map((friend) => (
-          <View key={friend.id}>
-            <Text>{friend.name}</Text>
-          </View>
-        ))}
+        {data &&
+          data.searchUser.map((friend) => (
+            <View key={friend.user.id}>
+              <Text>{friend.user.name}</Text>
+            </View>
+          ))}
       </Suspense>
     </View>
   );
