@@ -60,10 +60,7 @@ export const userFriendsQuery = async (
         NOT: {
           id: user_id,
         },
-        OR: [
-          { email: { contains: prompt, mode: "insensitive" } },
-          { name: { contains: prompt, mode: "insensitive" } },
-        ],
+        OR: [{ name: { contains: prompt, mode: "insensitive" } }],
       },
     },
   });
