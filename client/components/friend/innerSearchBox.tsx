@@ -1,20 +1,23 @@
-import { FRIENDSEARCH } from "@/constants/queries/friends";
-import { useSuspenseQuery } from "@apollo/client";
 import React from "react";
 import { Text, View } from "react-native";
+import { useSuspenseQuery } from "@apollo/client";
+import { FRIENDSEARCH } from "@/constants/queries/friends";
+import UserOption from "./friend";
 
 interface InnerSearchBoxProps {
   prompt: string;
 }
 
+export interface UserItem {
+  user: {
+    id: string;
+    name: string;
+  };
+  isFriend: boolean;
+}
+
 interface FriendSearchResponse {
-  searchUser: {
-    user: {
-      id: string;
-      name: string;
-    };
-    isFriend: boolean;
-  }[];
+  searchUser: UserItem[];
 }
 
 interface FriendSearchRequest {
@@ -22,7 +25,7 @@ interface FriendSearchRequest {
 }
 
 const InnerSearchBox = ({ prompt }: InnerSearchBoxProps) => {
-  const { data, error } = useSuspenseQuery<
+  const { data, error, refetch } = useSuspenseQuery<
     FriendSearchResponse,
     FriendSearchRequest
   >(FRIENDSEARCH, {
@@ -37,8 +40,8 @@ const InnerSearchBox = ({ prompt }: InnerSearchBoxProps) => {
   return (
     <View>
       {data &&
-        data.searchUser.map((friend) => (
-          <Text key={friend.user.id}>{friend.user.name}</Text>
+        data.searchUser.map((user) => (
+          <UserOption key={user.user.id} user={user} />
         ))}
     </View>
   );

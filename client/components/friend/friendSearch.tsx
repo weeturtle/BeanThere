@@ -4,20 +4,6 @@ import React, { useState, Suspense, useEffect } from "react";
 import { View, TextInput, Text } from "react-native";
 import InnerSearchBox from "./innerSearchBox";
 
-interface FriendSearchResponse {
-  searchUser: {
-    user: {
-      id: string;
-      name: string;
-    };
-    isFriend: boolean;
-  }[];
-}
-
-interface FriendSearchRequest {
-  prompt: string;
-}
-
 const FriendSearch = () => {
   const [search, setSearch] = useState<string>("");
 
